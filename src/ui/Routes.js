@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import Error404Screen from "./screens/Errors/Error404Screen";
 import LogIn from "./screens/LogIn";
+import SignUp from "./screens/SignUp";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -18,6 +19,7 @@ export class Routes extends React.Component {
           <Switch>
             <Route exact path="/" component={HomeScreen} />
             <Route exact path="/login" component={LogIn} />
+            <Route exact path="/signup" component={SignUp} />
             <Route exact path="" component={Error404Screen} />
           </Switch>
           <Footer />
