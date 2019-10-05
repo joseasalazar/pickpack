@@ -1,7 +1,7 @@
 import React from "react";
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import styled from 'styled-components'
-import {Typography, Input, Button} from 'antd';
+// import {Typography, Input, Button} from 'antd';
 
 const LoginCard = styled.div`
     border: opx solid lightgray;
@@ -15,48 +15,48 @@ const LoginCard = styled.div`
 const CardItem = styled.div`
     padding: 15px;
 `
-const { Title } = Typography;
+// const { Title } = Typography;
 
 export default class SignUp extends React.Component {
   render() {
     return (
       <LoginCard>
         <div>
-          <Title level={2}>Register</Title>
+          {/* <Title level={2}>Register</Title> */}
         </div>
       <CardItem>
-          <Input
+          {/* <Input
               placeholder="First Name"
-          />
+          /> */}
       </CardItem>
       <CardItem>
-          <Input
+          {/* <Input
               placeholder="Last Name"
-          />
+          /> */}
       </CardItem>
       <CardItem>
-          <Input
+          {/* <Input
             type="email"
             placeholder="E-mail"
-          />
+          /> */}
       </CardItem>
       <CardItem>
-          <Input
+          {/* <Input
               type="password"
               placeholder="Password"
-          />
+          /> */}
       </CardItem>
       <CardItem>
-          <Input
+          {/* <Input
               type="password"
               placeholder="Confirm Password"
-          />
+          /> */}
       </CardItem>
 
       <CardItem>
-        <Button type="primary" htmlType="submit" className="login-form-button">
+        {/* <Button type="primary" htmlType="submit" className="login-form-button">
         Sign Up
-        </Button>
+        </Button> */}
       </CardItem>
   </LoginCard>
     );

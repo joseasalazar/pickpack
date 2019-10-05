@@ -1,7 +1,5 @@
 import React from "react";
-import 'antd/dist/antd.css';
 import styled from 'styled-components'
-import { Icon, Input, Button, Checkbox, Row, Col } from 'antd';
 
 const LoginCard = styled.div`
     border: opx solid lightgray;
@@ -22,20 +20,20 @@ export default class LogIn extends React.Component {
         return (
             <LoginCard>
                 <CardItem>
-                    <Input
+                    {/* <Input
                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         placeholder="Username"
-                    />
+                    /> */}
                 </CardItem>
                 <CardItem>
-                    <Input
+                    {/* <Input
                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         type="password"
                         placeholder="Password"
-                    />
+                    /> */}
                 </CardItem>
                 <CardItem>
-                    <Row>
+                    {/* <Row>
                         <Col span={12}>
                             <Checkbox>Remember me</Checkbox>
                         </Col>
@@ -44,13 +42,13 @@ export default class LogIn extends React.Component {
                             Forgot password
                             </a>
                         </Col>
-                    </Row>
+                    </Row> */}
                     
                 </CardItem>
                 <CardItem>
-                    <Button type="primary" block>
+                    {/* <Button type="primary" block>
                         Log in
-                    </Button>
+                    </Button> */}
                 </CardItem>
                 <CardItem>
                     Or <a href="">Sign Up!</a>
