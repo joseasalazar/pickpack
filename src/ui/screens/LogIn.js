@@ -1,5 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from 'react-bootstrap';
 
 const LoginCard = styled.div`
     border: opx solid lightgray;
@@ -11,7 +13,7 @@ const LoginCard = styled.div`
 `
 
 const CardItem = styled.div`
-    padding: 15px;
+    padding: 10px;
 `
 
 
@@ -20,38 +22,19 @@ export default class LogIn extends React.Component {
         return (
             <LoginCard>
                 <CardItem>
-                    {/* <Input
-                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        placeholder="Username"
-                    /> */}
+                    <input type="text" class="form-control" placeholder="Username"></input>
                 </CardItem>
                 <CardItem>
-                    {/* <Input
-                        prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        type="password"
-                        placeholder="Password"
-                    /> */}
+                    <input type="password" class="form-control" placeholder="Password"></input>
                 </CardItem>
                 <CardItem>
-                    {/* <Row>
-                        <Col span={12}>
-                            <Checkbox>Remember me</Checkbox>
-                        </Col>
-                        <Col span={12}>
-                            <a className="login-form-forgot" href="">
-                            Forgot password
-                            </a>
-                        </Col>
-                    </Row> */}
-                    
+                    <a href="#"> Forgot password </a>
                 </CardItem>
                 <CardItem>
-                    {/* <Button type="primary" block>
-                        Log in
-                    </Button> */}
-                </CardItem>
-                <CardItem>
-                    Or <a href="">Sign Up!</a>
+                    <Button variant="primary" size="md" block>
+                        Log In
+                    </Button>
+                    Or <a href="#">Sign Up!</a>
                 </CardItem>
             </LoginCard>
         );
