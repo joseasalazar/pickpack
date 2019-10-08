@@ -6,10 +6,6 @@ export default class Footer extends React.Component {
     return (
       <div>
         <Card.Footer className="text-muted">
-          <small>Politicas PickPack</small>
-          <br/>
-          <small>#PickPackContigo</small>
-          <br/>
           <small>¿Quieres recibir Tips y Ofertas de Viaje? </small>
         </Card.Footer>
       </div>

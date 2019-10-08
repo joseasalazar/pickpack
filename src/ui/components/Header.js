@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Logo } from "../assets/logo.png";
+import Logo from "../assets/logo.png";
 
 export default class Header extends React.Component {
   render() {
