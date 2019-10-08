@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   render() {
     return (
       <div>
