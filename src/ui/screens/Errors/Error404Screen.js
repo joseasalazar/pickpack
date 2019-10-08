@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Error404Screen extends React.Component {
+export class Error404Screen extends React.Component {
   render() {
     return (
       <div>
