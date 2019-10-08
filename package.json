@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "antd": "^3.23.5",
+=======
+>>>>>>> 79d097d6c263168b749702cc361de38958a77a75
     "bootstrap": "^4.3.1",
     "formik": "^1.5.8",
     "react": "^16.9.0",
