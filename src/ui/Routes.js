@@ -2,14 +2,14 @@ import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 //Import Screens
-import HomeScreen from "./screens/HomeScreen";
-import Error404Screen from "./screens/Errors/Error404Screen";
-import LogIn from "./screens/LogIn";
-import SignUp from "./screens/SignUp";
-import Proveedores from "./screens/Provedores";
+import { HomeScreen } from "./screens/HomeScreen";
+import { Error404Screen } from "./screens/Errors/Error404Screen";
+import { LogIn } from "./screens/LogIn";
+import { SignUp } from "./screens/SignUp";
+import { Proveedores } from "./screens/Provedores";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 export class Routes extends React.Component {
   render() {

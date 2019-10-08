@@ -3,9 +3,41 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+<<<<<<< HEAD
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
+=======
+
+//Setup for graphql
+import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
+
+const cache = new InMemoryCache();
+const link = new HttpLink({
+  uri: "https://u2mqz07q4e.execute-api.us-east-1.amazonaws.com/dev/graphql"
+});
+
+const client = new ApolloClient({
+  cache,
+  link,
+  request: operation => {
+    const token = localStorage.getItem("token");
+    operation.setContext({
+      headers: {
+        Authorization: token ? `Bearer ${token}` : ""
+      }
+    });
+  }
+});
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById("root")
+);
+>>>>>>> 90e23642e1af9dc6728655092dfbc2310a2e35de
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

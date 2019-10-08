@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-export default class Footer extends React.Component {
+export class Footer extends React.Component {
   render() {
     return (
       <div>

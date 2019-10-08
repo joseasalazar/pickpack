@@ -4,7 +4,7 @@ import { Card, Figure } from "react-bootstrap";
 import BG from "../assets/viajaresincreible.jpeg";
 import BG1 from "../assets/guysinsnow.jpg";
 
-export default class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   render() {
     return (
       <div>
