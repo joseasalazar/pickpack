@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
 
@@ -46,12 +46,11 @@ export class LogIn extends React.Component {
           {({ values, errors, touched }) => (
             <Form className="form" role="form" method="post">
               <div className="form-group">
-                <label>Email address</label>
+                <label>Correo electrónico</label>
                 <Field
                   type="email"
                   className="form-control"
                   id="email"
-                  placeholder="Enter your email"
                   name="email"
                 />
                 {touched.email && errors.email && (
@@ -59,23 +58,24 @@ export class LogIn extends React.Component {
                 )}
               </div>
               <div className="form-group">
-                <label>Password</label>
+                <label>Contraseña</label>
                 <Field
                   type="password"
                   className="form-control"
                   id="password"
-                  placeholder="Enter your password"
                   name="password"
                 />
                 {touched.password && errors.password && (
                   <ErrorSpan>{errors.password}</ErrorSpan>
                 )}
               </div>
-              <NavLink to="/forgot-password"> Forgot password </NavLink>
               <Button type="submit" variant="primary" size="md" block>
-                Log In
+                Iniciar sesión
               </Button>
-              Or <NavLink to="/register">Sign Up!</NavLink>
+              <Container>
+                <Row className="justify-content-md-center"><NavLink to="/signup"> Crear una cuenta</NavLink></Row>
+                <Row className="justify-content-md-center"><NavLink to="/forgot-password"> He olvidado mi contraseña </NavLink></Row>
+              </Container>
             </Form>
           )}
         </Formik>
