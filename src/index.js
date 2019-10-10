@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 //Setup for graphql
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import { resolvers, typeDefs } from "./api/resolvers";
 import { persistCache } from "apollo-cache-persist";
+
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -35,6 +37,7 @@ cache.writeData({
     isLoggedIn: !!localStorage.getItem("token"),
     cartItems: [],
     userType: localStorage.getItem("role") ? localStorage.getItem("role") : null
+
   }
 });
 
