@@ -28,14 +28,12 @@ export class Header extends React.Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <HeaderLink>
-              <NavDropdown title="Viajes" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/2.1">Tours</NavDropdown.Item>
-                <NavDropdown.Item href="#action/2.2">
-                  Actividades
-                </NavDropdown.Item>
-              </NavDropdown>
-            </HeaderLink>
+            <NavDropdown title="Viajes" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/2.1">Tours</NavDropdown.Item>
+              <NavDropdown.Item href="#action/2.2">
+                Actividades
+              </NavDropdown.Item>
+            </NavDropdown>
 
             <Nav.Link>
               <HeaderLink>Contacto</HeaderLink>

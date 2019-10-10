@@ -36,7 +36,7 @@ export class HomeScreen extends React.Component {
         <Card className="text-white">
           <Card.Img src={BG1} alt="guys in the snow" />
           <Card.ImgOverlay>
-           <Title>#Packers</Title>
+            <Title>#Packers</Title>
             <Card.Text>
               Creemos en lugares, en personas, en experiencias. Creemos en
               viajes, historias, vivencias.
@@ -47,6 +47,8 @@ export class HomeScreen extends React.Component {
             </Card.Text>
           </Card.ImgOverlay>
         </Card>
+
+       
       </div>
     );
   }
