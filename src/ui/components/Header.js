@@ -2,7 +2,6 @@ import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Logo from "../assets/logo.png";
-
 import styled from "styled-components";
 
 import { NavLink } from "react-router-dom";

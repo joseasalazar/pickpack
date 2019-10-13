@@ -8,6 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //Setup for graphql
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
+import { resolvers, typeDefs } from "./api/resolvers";
+import { persistCache } from "apollo-cache-persist";
+
 
 
 const cache = new InMemoryCache();
@@ -25,6 +28,17 @@ const client = new ApolloClient({
         Authorization: token ? `Bearer ${token}` : ""
       }
     });
+  },
+  typeDefs,
+  resolvers
+});
+
+cache.writeData({
+  data: {
+    isLoggedIn: !!localStorage.getItem("token"),
+    cartItems: [],
+    userType: localStorage.getItem("role") ? localStorage.getItem("role") : null
+
   }
 });
 
