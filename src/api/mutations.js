@@ -11,3 +11,21 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const S3_SIGN = gql`
+  mutation uploadToS3($filename: String!, $filetype: String!) {
+    uploadToS3(filename: $filename, filetype: $filetype) {
+      url
+      signedRequest
+    }
+  }
+`;
+
+export const UPLOAD_IMAGE = gql`
+  mutation registerImage($url: String!) {
+    registerImage(url: $url) {
+      url
+      tourPhotoId
+    }
+  }
+`;

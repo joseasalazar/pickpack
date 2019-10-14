@@ -5,7 +5,7 @@ import { LOGIN_USER } from "../../api/mutations";
 
 export default function LogIn() {
   const client = useApolloClient();
-  const [login, { data, loading, error }] = useMutation(LOGIN_USER, {
+  const [login, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
       localStorage.setItem("token", login.token);
       localStorage.setItem("role", login.user.type);
@@ -17,8 +17,6 @@ export default function LogIn() {
 
   if (loading) return <p>loading...</p>;
   if (error) return <p>An error occurred</p>;
-  // if (data) {
-  //   console.log(data);
-  // }
+
   return <LoginForm login={login} />;
 }
