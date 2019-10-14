@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
 
 const LoginCard = styled.div`
-  padding: 40px;
+  padding: 40px; 
   width: 40%;
   margin: auto;
   box-sizing: border-box;
@@ -24,6 +24,11 @@ const Container = styled.div`
   background:#ed8253;
   padding: 30px;
 `;
+
+const Gender = styled.label`
+  padding-right: 10px;
+`;
+
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string()
@@ -59,17 +64,7 @@ export class SignUp extends React.Component {
       <Container>
         <LoginCard>
           <Formik
-          initialValues={{
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-            confirmPasswd: "",
-            dateBirth: "",
-            gender: "",
-            city:"",
-            state: ""
-          }}
+          initialValues={{ firstName: "", lastName: "", email: "", password: "", confirmPasswd: "", dateBirth: "", gender: "", city:"", state: "" }}
           validationSchema={SignupSchema}
           onSubmit={(values, { resetForm, setError, setSubmitting }) => {
             console.log(values);
@@ -80,24 +75,14 @@ export class SignUp extends React.Component {
                 <div className="form-group row">
                   <div className="col">
                     <label>Nombre</label>
-                    <Field
-                      type="text"
-                      className="form-control"
-                      id="firstName"
-                      name="firstName"
-                      />
+                    <Field type="text" className="form-control" id="firstName" name="firstName" />
                       {touched.firstName && errors.firstName && (
                         <ErrorSpan>{errors.firstName}</ErrorSpan>
                       )}
                   </div>
                   <div className="col">
                     <label>Apellido</label>
-                    <Field
-                      type="text"
-                      className="form-control"
-                      id="lastName"
-                      name="lastName"
-                      />
+                    <Field type="text" className="form-control" id="lastName" name="lastName" />
                       {touched.lastName && errors.lastName && (
                         <ErrorSpan>{errors.lastName}</ErrorSpan>
                       )}
@@ -105,55 +90,34 @@ export class SignUp extends React.Component {
                 </div> 
                 <div className="form-group">
                   <label>Correo electrónico</label>
-                  <Field
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    placeholder="Enter your email"
-                    name="email"
-                    />
+                  <Field type="email" className="form-control" id="email" name="email" />
                     {touched.email && errors.email && (
                       <ErrorSpan>{errors.email}</ErrorSpan>
                     )}
                 </div>
                 <div className="form-group">
                   <label>Contraseña</label>
-                  <Field
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    name="password"
-                    />
+                  <Field type="password" className="form-control" id="password" name="password" />
                     {touched.password && errors.password && (
                       <ErrorSpan>{errors.password}</ErrorSpan>
                     )}
                 </div> 
                 <div className="form-group">
                   <label>Confirmar contraseña</label>
-                  <Field
-                    type="password"
-                    className="form-control"
-                    id="confirmarPasswd"
-                    name="confirmarPasswd"
-                    />
+                  <Field type="password" className="form-control" id="confirmarPasswd" name="confirmarPasswd" />
                     {touched.confirmarPasswd && errors.confirmarPasswd && (
                       <ErrorSpan>{errors.confirmarPasswd}</ErrorSpan>
                     )}
                 </div> 
                 <div className="form-group">
                   <label>Fecha de nacimiento</label>
-                  <Field
-                    type="date"
-                    className="form-control"
-                    id="dateBirth"
-                    name="dateBirth"
-                  />
+                  <Field type="date" className="form-control" id="dateBirth" name="dateBirth" />
                   {touched.dateBirth && errors.dateBirth && (
                     <ErrorSpan>{errors.dateBirth}</ErrorSpan>
                   )}
                 </div>
                 <div className="form-group">
-                  <label>Género</label>
+                  <Gender>Género</Gender>
                   <Field component="select" name="gender">
                     <option value="male">Hombre</option>
                     <option value="female">Mujer</option>
@@ -163,12 +127,7 @@ export class SignUp extends React.Component {
                 <div className="form-group row">
                   <div className="col">
                     <label>Ciudad</label>
-                    <Field
-                      type="text"
-                      className="form-control"
-                      id="city"
-                      name="city"
-                      />
+                    <Field type="text" className="form-control" id="city" name="city" />
                       {touched.city && errors.city && (
                         <ErrorSpan>{errors.city}</ErrorSpan>
                       )}
@@ -176,11 +135,7 @@ export class SignUp extends React.Component {
                   <div className="col">
                     <label>Estado</label>
                     <Field
-                      type="text"
-                      className="form-control"
-                      id="state"
-                      name="state"
-                      />
+                      type="text" className="form-control" id="state" name="state" />
                       {touched.state && errors.state && (
                         <ErrorSpan>{errors.state}</ErrorSpan>
                       )}
