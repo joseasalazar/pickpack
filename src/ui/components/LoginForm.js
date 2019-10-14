@@ -4,9 +4,6 @@ import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
-import { Logout } from "./Logout";
-import { IsLoggedIn } from "./IsLoggedIn";
-import { RoleManager } from "../RoleManager";
 
 const LoginCard = styled.div`
   padding: 20px;
@@ -84,19 +81,6 @@ export class LoginForm extends Component {
             </Form>
           )}
         </Formik>
-        {/* <IsLoggedIn true={<Logout />}>
-          <p>Hola iniciaste sesion dhidhioqwhoi</p>
-          <p>Hola dwdijqwio sesion dhidhioqwhoi</p>
-        </IsLoggedIn>
-        <RoleManager role={"customer"}>
-          <p>Role Manager Customer</p>
-        </RoleManager>
-        <RoleManager role={"admin"}>
-          <p>Role Manager Admin</p>
-        </RoleManager>
-        <RoleManager role={"provider"}>
-          <p>Role Manager Provider</p>
-        </RoleManager> */}
       </LoginCard>
     );
   }
