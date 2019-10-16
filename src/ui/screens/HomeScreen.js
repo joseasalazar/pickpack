@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Figure } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import styled from "styled-components";
 import BG from "../assets/viajaresincreible.jpeg";
 import BG1 from "../assets/guysinsnow.jpg";
@@ -36,7 +36,7 @@ export class HomeScreen extends React.Component {
         <Card className="text-white">
           <Card.Img src={BG1} alt="guys in the snow" />
           <Card.ImgOverlay>
-           <Title>#Packers</Title>
+            <Title>#Packers</Title>
             <Card.Text>
               Creemos en lugares, en personas, en experiencias. Creemos en
               viajes, historias, vivencias.
