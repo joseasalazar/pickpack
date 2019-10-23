@@ -24,15 +24,13 @@ export class Header extends React.Component {
               className="d-inline-block align-top"
               alt="PickPack Logo"
             ></img>
-          </Navbar.Brand>
+            </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
               <NavDropdown title="Viajes" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/2.1">Tours</NavDropdown.Item>
-                <NavDropdown.Item href="#action/2.2">
-                  Actividades
-                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/2.2">Actividades</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/proveedores">Proveedores</Nav.Link>
               <Nav.Link href="/contacto">Contacto</Nav.Link>
