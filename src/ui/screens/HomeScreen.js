@@ -6,7 +6,8 @@ import {
   Row,
   Container,
   Col,
-  CardColumns
+  CardColumns,
+  Button
 } from "react-bootstrap";
 
 import styled from "styled-components";
@@ -18,6 +19,8 @@ import Huaxteca from "../assets/huaxteca.png";
 import Buggy from "../assets/junglebuggy.png";
 import Surfing from "../assets/surfingontheroad.png";
 import Tingo from "../assets/tingoaltango.png";
+import Oaxaca from "../assets/oaxaca.png";
+import Riviera from "../assets/riviera.png";
 
 const tours = [
   {
@@ -55,21 +58,66 @@ const subTitle = {
   fontFamily: "Roboto, sans-serif"
 };
 
+const BodyText = styled(Card.Text)`
+  text-align: left;
+  font-weight: bold;
+
+  font-size: x-large;
+`;
+
 export class HomeScreen extends React.Component {
   render() {
     return (
       <div>
+        <h1>PickPack</h1>
+        <Typist style={subTitle}>¡Ve lejos, comienza aquí!</Typist>
         <Card className="text-white">
           <Card.Img src={BG} alt="guy with bicycle" />
           <Card.ImgOverlay>
-            <Card.Title>
-              <Title>PickPack</Title>
-            </Card.Title>
-            <Typist style={subTitle}>¡Ve lejos, comienza aquí</Typist>
+            <Card style={{ width: "18rem" }}>
+              <Card.Img src={Riviera}></Card.Img>
+              <Card.ImgOverlay>
+                <Card.Title>Riviera Maya</Card.Title>
+              </Card.ImgOverlay>
+              <Card.Body>
+                <Container>
+                  <Row>
+                    <Col>
+                      <Card.Text
+                        style={{
+                          color: "black",
+                          textDecoration: "line-through"
+                        }}
+                      >
+                        <BodyText>$500</BodyText>
+                      </Card.Text>
+                    </Col>
+                    <Col>
+                      <Card.Text style={{ color: "orange" }}>
+                        <BodyText>$800</BodyText>
+                      </Card.Text>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col>
+                      <small style={{ color: "black", marginTop: "0px" }}>
+                        por persona
+                      </small>
+                    </Col>
+                    <Col>
+                      <Button size="sm" variant="dark">
+                        ¡Vamos!
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Card.Body>
+            </Card>
           </Card.ImgOverlay>
         </Card>
-                          
-        <h5 style={{ textAlign: "center" }}>¡Conoce nuestras opciones!</h5>
+             
+        <h1 style={{ textAlign: "center" }}>¡Conoce nuestras opciones! </h1>
                 
         <Container>
                     
@@ -103,31 +151,52 @@ export class HomeScreen extends React.Component {
             </Card.Text>
           </Card.ImgOverlay>
         </Card>
-                
+        <h5 style={{ textAlign: "center" }}>
+          ¡Conoce nuestros Pickers Favoritos!
+        </h5>
         <Container>
-                    
-          <StyledRow>
-                        
-            <Figure>
-                            
-              <Figure.Image width={171} height={180} src={Buggy}></Figure.Image>
-                          
-            </Figure>
-                        
-            <Figure>
-                            
-              <Figure.Image
-                width={171}
-                height={180}
-                src={Huaxteca}
-              ></Figure.Image>
-                          
-            </Figure>
-                        
-          </StyledRow>
-                  
+          <Row className="justify-content-md-center">
+            <Col xs lg="2">
+              <Figure>
+                <Figure.Image
+                  src={Oaxaca}
+                  width={64}
+                  height={64}
+                ></Figure.Image>
+              </Figure>
+            </Col>
+            <Col xs lg="2">
+              <Figure>
+                <Figure.Image src={Tingo} width={64} height={64}></Figure.Image>
+              </Figure>
+            </Col>
+            <Col xs lg="2">
+              <Figure>
+                <Figure.Image
+                  src={Surfing}
+                  width={64}
+                  height={64}
+                ></Figure.Image>
+              </Figure>
+            </Col>
+
+            <Col xs lg="2">
+              <Figure>
+                <Figure.Image
+                  src={Huaxteca}
+                  width={64}
+                  height={64}
+                ></Figure.Image>
+              </Figure>
+            </Col>
+            <Col xs lg="2">
+              <Figure>
+                <Figure.Image src={Buggy} width={64} height={64}></Figure.Image>
+              </Figure>
+            </Col>
+          </Row>
         </Container>
-                 
+                                         
       </div>
     );
   }
