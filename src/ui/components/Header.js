@@ -16,8 +16,8 @@ export class Header extends React.Component {
     return (
       <div>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-          <Navbar.Brand href="/">            
-          <img
+          <Navbar.Brand href="/">
+            <img
               src={Logo}
               width="35"
               height="35"
@@ -36,7 +36,7 @@ export class Header extends React.Component {
               <Nav.Link href="/contacto">Contacto</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="/login">Log in</Nav.Link>
+              <Nav.Link href="/login">Iniciar Sesión</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

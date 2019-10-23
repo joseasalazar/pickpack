@@ -15,8 +15,6 @@ import {
 } from "apollo-boost";
 import { resolvers, typeDefs } from "./api/resolvers";
 
-
-
 const cache = new InMemoryCache();
 const link = new HttpLink({
   uri: "https://u2mqz07q4e.execute-api.us-east-1.amazonaws.com/dev/graphql"
