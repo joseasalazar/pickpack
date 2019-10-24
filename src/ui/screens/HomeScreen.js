@@ -1,18 +1,9 @@
 import React from "react";
 
-import {
-  Card,
-  Figure,
-  Row,
-  Container,
-  Col,
-  CardColumns,
-  Button,
-  Image
-} from "react-bootstrap";
+import { Card, Figure, Row, Container, Col, Carousel } from "react-bootstrap";
 
 import styled from "styled-components";
-import BG from "../assets/hombreenelmar.png"; 
+import BG from "../assets/hombreenelmar.png";
 import BG1 from "../assets/guysinsnow.jpg";
 import Typist from "react-typist";
 import TourCardHomePage from "../components/TourCardHomeScreen";
@@ -22,6 +13,10 @@ import Surfing from "../assets/surfingontheroad.png";
 import Tingo from "../assets/tingoaltango.png";
 import Oaxaca from "../assets/oaxaca.png";
 import Riviera from "../assets/riviera.png";
+import Collage from "../assets/collage.png";
+//Carrusel
+import Tulum from "../assets/Tulum.png";
+import Hierve from "../assets/Oaxaca-hierveelagua.png";
 
 const tours = [
   {
@@ -55,7 +50,7 @@ const Title = styled(Card.Title)`
 
 const subTitle = {
   textAlign: "center",
-  color: "black",
+
   fontFamily: "Roboto, sans-serif"
 };
 
@@ -70,74 +65,40 @@ export class HomeScreen extends React.Component {
   render() {
     return (
       <div>
-        <h1>PickPack</h1>
-        <Typist style={subTitle}>¡Ve lejos, comienza aquí!</Typist>
         <Card className="text-white">
           <Card.Img src={BG} alt="guy with bicycle" />
           <Card.ImgOverlay>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img src={Riviera}></Card.Img>
-              <Card.ImgOverlay>
-                <Card.Title>Riviera Maya</Card.Title>
-              </Card.ImgOverlay>
-              <Card.Body>
-                <Container>
-                  <Row>
-                    <Col>
-                      <Card.Text
-                        style={{
-                          color: "black",
-                          textDecoration: "line-through"
-                        }}
-                      >
-                        <BodyText>$500</BodyText>
-                      </Card.Text>
-                    </Col>
-                    <Col>
-                      <Card.Text style={{ color: "orange" }}>
-                        <BodyText>$800</BodyText>
-                      </Card.Text>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col>
-                      <small style={{ color: "black", marginTop: "0px" }}>
-                        por persona
-                      </small>
-                    </Col>
-                    <Col>
-                      <Button size="sm" variant="dark">
-                        ¡Vamos!
-                      </Button>
-                    </Col>
-                  </Row>
-                </Container>
-              </Card.Body>
-            </Card>
+            <Card.Title style={{ textAlign: "center", fontSize: "xx-large" }}>
+              <h1>PickPack</h1>
+            </Card.Title>
+            <Card.Text style={{ textAlign: "center", fontSize: "large" }}>
+              {" "}
+              <Typist style={subTitle}>¡Ve lejos, comienza aquí!</Typist>
+            </Card.Text>
           </Card.ImgOverlay>
         </Card>
+        <br></br>
+        <Carousel>
+          <Carousel.Item>
+            <img
+              style={{ margin: "auto" }}
+              className="d-block w-50"
+              src={Tulum}
+              alt="First slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ margin: "auto" }}
+              className="d-block w-50"
+              src={Hierve}
+              alt="First slide"
+            />
+          </Carousel.Item>
+        </Carousel>
              
         <h1 style={{ textAlign: "center" }}>¡Conoce nuestras opciones! </h1>
-                
-        <Container>
-                    
-          <StyledRow>
-                        
-            {tours.map(tour => {
-              return (
-                <Col className="col-md-4">
-                                    
-                  <TourCardHomePage name={tour.name} image={tour.image} />
-                                  
-                </Col>
-              );
-            })}
-                      
-          </StyledRow>
-                  
-        </Container>
-                <Card className="text-white"></Card>
+               <Card className="text-white"></Card>
         <Card className="text-white">
           <Card.Img src={BG1} alt="guys in the snow" />
           <Card.ImgOverlay>
@@ -151,6 +112,9 @@ export class HomeScreen extends React.Component {
               </Card.Text>
             </Card.Text>
           </Card.ImgOverlay>
+        </Card>
+        <Card>
+          <Card.Img src={Collage}></Card.Img>
         </Card>
         <h5 style={{ textAlign: "center" }}>
           ¡Conoce nuestros Pickers Favoritos!
