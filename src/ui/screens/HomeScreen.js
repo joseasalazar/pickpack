@@ -17,7 +17,7 @@ import Collage from "../assets/collage.png";
 //Carrusel
 import Tulum from "../assets/Tulum.png";
 import Hierve from "../assets/Oaxaca-hierveelagua.png";
-
+import Colombia from "../assets/colombia-bogota.png";
 const tours = [
   {
     id: 1,
@@ -53,14 +53,10 @@ const subTitle = {
 
   fontFamily: "Roboto, sans-serif"
 };
-
-const BodyText = styled(Card.Text)`
-  text-align: left;
-  font-weight: bold;
-
-  font-size: x-large;
-`;
-
+const carouselText = {
+  textAlign: "center",
+  display: "inline-Block"
+};
 export class HomeScreen extends React.Component {
   render() {
     return (
@@ -77,6 +73,8 @@ export class HomeScreen extends React.Component {
             </Card.Text>
           </Card.ImgOverlay>
         </Card>
+        <br></br>
+        <h1 style={{ textAlign: "center" }}>¡Conoce nuestras opciones! </h1>
         <br></br>
         <Carousel>
           <Carousel.Item>
@@ -95,10 +93,19 @@ export class HomeScreen extends React.Component {
               alt="First slide"
             />
           </Carousel.Item>
+          <Carousel.Item>
+            <Carousel.Caption>
+              <h1>¡Ofertas!</h1>
+            </Carousel.Caption>
+            <img
+              style={{ margin: "auto" }}
+              className="d-block w-50"
+              src={Colombia}
+              alt="Third Slide"
+            />
+          </Carousel.Item>
         </Carousel>
-             
-        <h1 style={{ textAlign: "center" }}>¡Conoce nuestras opciones! </h1>
-               <Card className="text-white"></Card>
+                     <Card className="text-white"></Card>
         <Card className="text-white">
           <Card.Img src={BG1} alt="guys in the snow" />
           <Card.ImgOverlay>
