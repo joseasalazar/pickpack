@@ -26,11 +26,13 @@ export class Routes extends React.Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/proveedores" component={Proveedores} />
             <Route exact path="/tours" component={Tours} />
+
             <Route
               exact
               path="/registertourtrial"
               component={Registertourtrial}
             />
+
 
             <Route exact path="" component={Error404Screen} />
           </Switch>

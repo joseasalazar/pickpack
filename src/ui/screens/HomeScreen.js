@@ -2,6 +2,7 @@ import React from "react";
 
 import { Card, Figure, Row, Container, Col, Carousel } from "react-bootstrap";
 
+
 import styled from "styled-components";
 import BG from "../assets/hombreenelmar.png";
 import BG1 from "../assets/guysinsnow.jpg";
