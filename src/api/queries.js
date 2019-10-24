@@ -11,3 +11,15 @@ export const USER_TYPE = gql`
     userType @client
   }
 `;
+
+export const GET_TOUR_BY_NAME = gql`
+  query getTourByName($name: String!) {
+    getTourByName(name: $name) {
+      name
+      price
+      photo
+      type
+      tourId
+    }
+  }
+`;
