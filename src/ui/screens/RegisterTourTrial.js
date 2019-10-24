@@ -1,23 +1,54 @@
-import React from "react";
-import { Form } from "react-bootstrap";
+import React, { Fragment } from "react";
+import { Form, Row, Col } from "react-bootstrap";
 //import { Formik } from "formik";
 
 export default function RegisterTourTrial() {
   return (
     <Form>
       <h3>Dar de alta un tour</h3>
-      <h6>Nombre del tour </h6>
-      <Form.Control size="lg" type="text" placeholder="" />
-      <h6>Lugar del Tour </h6>
-      <Form.Control size="lg" type="text" placeholder="Small text" />
-      <h6>Fechas Disponibles </h6>
-      <Form.Control size="lg" type="date" placeholder="Small text" />
-      <h6>Fotos </h6>
-      <Form.Control size="lg" type="file" placeholder="Small text" />
 
-      <Form.Control type="text" placeholder="Normal text" />
-      <br />
-      <Form.Control size="sm" type="text" placeholder="Small text" />
+      <Form.Group as={Row}>
+        <Form.Label column sm="2">
+          Nombre del Tour
+        </Form.Label>
+        <Col sm="4">
+          <Form.Control type="text" />
+        </Col>
+        <Form.Label column sm="2">
+          Ubicación
+        </Form.Label>
+        <Col sm="4">
+          <Form.Control type="text" />
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row}>
+        <Form.Label column sm="2">
+          Precio
+        </Form.Label>
+        <Col sm="4">
+          <Form.Control type="number" min="1" step="any" />
+        </Col>
+        <Form.Label column sm="2">
+          Cantidad
+        </Form.Label>
+        <Col sm="4">
+          <Form.Control type="number" />
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row}>
+        <Form.Label column sm="2">
+          Descripción
+        </Form.Label>
+        <Col sm="4">
+          <Form.Control type="text" min="1" step="any" />
+        </Col>
+        <Form.Label column sm="2">
+          Fotos
+        </Form.Label>
+        <Col sm="4">
+          <Form.Control type="file" />
+        </Col>
+      </Form.Group>
     </Form>
   );
 }
