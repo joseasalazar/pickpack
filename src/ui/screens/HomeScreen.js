@@ -7,11 +7,12 @@ import {
   Container,
   Col,
   CardColumns,
-  Button
+  Button,
+  Image
 } from "react-bootstrap";
 
 import styled from "styled-components";
-import BG from "../assets/viajaresincreible.jpeg";
+import BG from "../assets/hombreenelmar.png"; 
 import BG1 from "../assets/guysinsnow.jpg";
 import Typist from "react-typist";
 import TourCardHomePage from "../components/TourCardHomeScreen";
@@ -196,7 +197,7 @@ export class HomeScreen extends React.Component {
             </Col>
           </Row>
         </Container>
-                                         
+                                       
       </div>
     );
   }
