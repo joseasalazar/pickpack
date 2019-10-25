@@ -6,7 +6,7 @@ import Seat from "../assets/seat.png";
 import Client from "../assets/client.png";
 import Alps from "../assets/alps.jpg";
 
-import { Container, Row, Col, Button, Image, Card } from "react-bootstrap";
+import { Row, Col, Button, Card } from "react-bootstrap";
 
 const StyledContainer = styled.div`
   padding-left: 80px;
@@ -146,7 +146,7 @@ export class Proveedores extends React.Component {
               <Card.Title>
                 <h2
                   style={ImageText}
-                  // className="col-4 mx-auto d-flex justify-content-center flex-wrap"
+                // className="col-4 mx-auto d-flex justify-content-center flex-wrap"
                 >
                   ¡Genera ofertas y convierte tus pérdidas en ganancias!
                 </h2>
