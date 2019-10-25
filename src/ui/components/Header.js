@@ -62,7 +62,7 @@ export class Header extends React.Component {
             <IsLoggedIn true={<Logout />}>
               <Nav>
                 <Nav.Link>
-                  <NavLink to="/iniciar-sesion">Iniciar Sesion</NavLink>
+                  <NavLink to="/login">Iniciar Sesion</NavLink>
                 </Nav.Link>
               </Nav>
             </IsLoggedIn>
