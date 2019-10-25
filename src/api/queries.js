@@ -12,14 +12,26 @@ export const USER_TYPE = gql`
   }
 `;
 
-export const GET_TOUR_BY_NAME = gql`
-  query getTourByName($name: String!) {
-    getTourByName(name: $name) {
+export const GET_TOURS = gql`
+  query tours {
+    tours {
       name
-      price
-      photo
       type
+      price
       tourId
+      photo
     }
   }
+`;
+
+export const GET_TOUR_BY_NAME = gql`
+query getTourByName($name: String!) {
+  getTourByName(name: $name) {
+    name
+    price
+    photo
+    type
+    tourId
+  }
+}
 `;
