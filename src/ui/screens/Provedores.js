@@ -144,10 +144,7 @@ export class Proveedores extends React.Component {
             </div>
             <Card.ImgOverlay style={IntroStyle}>
               <Card.Title>
-                <h2
-                  style={ImageText}
-                // className="col-4 mx-auto d-flex justify-content-center flex-wrap"
-                >
+                <h2 style={ImageText}>
                   ¡Genera ofertas y convierte tus pérdidas en ganancias!
                 </h2>
               </Card.Title>

@@ -17,8 +17,7 @@ export class Header extends React.Component {
       <div>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
           <Navbar.Brand href="/">
-            <img
-              src={Logo}
+            <img src={Logo}
               width="35"
               height="35"
               className="d-inline-block align-top"

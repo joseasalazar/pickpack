@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+
+
+
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 //Setup for graphql
 import { ApolloProvider } from "@apollo/react-hooks";
@@ -14,7 +18,6 @@ import {
   InMemoryCache
 } from "apollo-boost";
 import { resolvers, typeDefs } from "./api/resolvers";
-
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
