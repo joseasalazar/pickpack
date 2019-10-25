@@ -17,14 +17,16 @@ export class Header extends React.Component {
     return (
       <div>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-          <Navbar.Brand href="/">
-            <img
-              src={Logo}
-              width="35"
-              height="35"
-              className="d-inline-block align-top"
-              alt="PickPack Logo"
-            ></img>
+          <Navbar.Brand>
+            <NavLink to="/">
+              <img
+                src={Logo}
+                width="35"
+                height="35"
+                className="d-inline-block align-top"
+                alt="PickPack Logo"
+              ></img>
+            </NavLink>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
