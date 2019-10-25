@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
 import { Button, Row } from "react-bootstrap";
-
 import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
 
 const LoginCard = styled.div`
-
   padding: 40px;
   width: 40%;
   margin: auto;
@@ -29,7 +26,6 @@ const Container = styled.div`
   background: #ed8253;
   padding: 30px;
   min-height: 525px;
-
 `;
 
 const ErrorSpan = styled.p`
@@ -51,9 +47,6 @@ const SingupSchema = Yup.object().shape({
 export class LoginForm extends Component {
   render() {
     return (
-
-      
-
       <Container>
         <LoginCard>
           <Formik
@@ -113,7 +106,6 @@ export class LoginForm extends Component {
           </Formik>
         </LoginCard>
       </Container>
-
     );
   }
 }
