@@ -5,7 +5,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { HomeScreen } from "./screens/HomeScreen";
 import { Error404Screen } from "./screens/Errors/Error404Screen";
 import LogIn from "./screens/LogIn";
-import { SignUp } from "./screens/SignUp";
+import SignUp from "./screens/SignUp";
 import { Proveedores } from "./screens/Provedores";
 import { Tours } from "./screens/Tours";
 import { ComoFunciona } from "./screens/ComoFunciona";
