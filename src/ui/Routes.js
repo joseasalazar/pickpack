@@ -5,8 +5,10 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { HomeScreen } from "./screens/HomeScreen";
 import { Error404Screen } from "./screens/Errors/Error404Screen";
 import LogIn from "./screens/LogIn";
-import { SignUp } from "./screens/SignUp";
+import SignUp from "./screens/SignUp";
 import { Proveedores } from "./screens/Provedores";
+import { ComoFunciona } from "./screens/ComoFunciona";
+import { ShoppingCart } from "./screens/ShoppingCart";
 import { TourScreen } from "./screens/Tours";
 import { TourDescriptionScreen } from "./screens/TourDescription";
 
@@ -26,6 +28,8 @@ export class Routes extends React.Component {
             <Route exact path="/proveedores" component={Proveedores} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/proveedores" component={Proveedores} />
+            <Route exact path="/comofunciona" component={ComoFunciona} />
+            <Route exact path="/compras" component={ShoppingCart} />
             <Route exact path="/tours" component={TourScreen} />
             <Route exact path="/tours/info" component={TourDescriptionScreen} />
             <Route exact path="/registertourtrial" component={Registertourtrial} />
