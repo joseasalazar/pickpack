@@ -7,6 +7,7 @@ export default function LogIn() {
   const client = useApolloClient();
   const [login, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
+      window.location.replace("/");
       localStorage.setItem("token", login.token);
       localStorage.setItem("role", login.user.type);
       client.writeData({
@@ -20,3 +21,4 @@ export default function LogIn() {
 
   return <LoginForm login={login} />;
 }
+
