@@ -1,6 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import Picker from "../assets/provider.jpg";
+import Clock from "../assets/clock.png";
+import Seat from "../assets/seat.png";
+import Client from "../assets/client.png";
+import Alps from "../assets/alps.jpg";
+import { Row, Col, Button, Card } from "react-bootstrap";
+
+const StyledContainer = styled.div`
+  padding-left: 80px;
+  padding-right: 80px;
+`;
 
 const StyledRow = styled(Row)`
   padding: 70px;
@@ -54,6 +64,25 @@ export class Proveedores extends React.Component {
               </p>
             </Col>
           </StyledRow>
+        </StyledContainer>
+
+        <StyledRow>
+          <Card className="text-white">
+            <div className="overflow">
+              <Card.Img src={Alps} alt="travel" />
+            </div>
+            <Card.ImgOverlay style={IntroStyle}>
+              <Card.Title>
+                <h2 style={ImageText}>
+                  ¡Genera ofertas y convierte tus pérdidas en ganancias!
+                </h2>
+              </Card.Title>
+            </Card.ImgOverlay>
+          </Card>
+        </StyledRow>
+
+        <h2 style={TitleStyle}> ¡Bienvenido a la familia PickPack!</h2>
+        <StyledContainer>
           <StyledRow>
             <h2>¡Genera ofertas y convierte tus pérdidas en ganancias!</h2>
             BACKGROUND IMAGE HERE
