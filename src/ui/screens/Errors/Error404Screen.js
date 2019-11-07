@@ -20,7 +20,7 @@ const Hr = styled.hr`
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #ff6f32;
   padding: 0;
 `;
 
