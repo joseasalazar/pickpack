@@ -77,13 +77,13 @@ export function TourDescriptionScreen() {
     );
 }
 
-export function ActionButton({ id, isincart, name }) {
+export function ActionButton({ tour }) {
   const [addToCart, { loading, error }] = useMutation(TOGGLE_CART, {
-    variables: { tourId: id, startDate: "19/10/10", quantity: 1 },
+    variables: { tour, quantity: 1, startDate: "10/10/10" },
     refetchQueries: [
       {
         query: GET_TOUR_BY_NAME,
-        variables: { name: name }
+        variables: { name: tour.name }
       }
     ]
   });
@@ -97,7 +97,7 @@ export function ActionButton({ id, isincart, name }) {
         variant="outline-dark"
         style={{ width: "160px" }}
       >
-        {isincart === "false" ? "Agregar al carrito" : "Borrar del carrito"}
+        {tour.isInCart ? "Borrar del carrito" : "Agregar al carrito"}
       </Button>
     </div>
   );
@@ -157,11 +157,7 @@ class TourDescription extends Component {
               >
                 Agregar al carrito
               </Button> */}
-              <ActionButton
-                id={this.props.tour.tourId}
-                isincart={this.props.tour.isInCart.toString()}
-                name={this.props.tour.name}
-              />
+              <ActionButton tour={this.props.tour} />
             </Form>
           </Col>
         </Row>

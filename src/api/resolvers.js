@@ -21,19 +21,23 @@ export const resolvers = {
   Tour: {
     isInCart: (tour, _, { cache }) => {
       const { cartItems } = cache.readQuery({ query: GET_CART_ITEMS });
-      const returnValue = cartItems.find(tours => tours.tourId === tour.tourId);
+      const returnValue = cartItems.find(
+        tours => tours.tour.tourId === tour.tourId
+      );
       return returnValue !== undefined ? true : false;
     }
   },
   Mutation: {
-    addOrRemoveFromCart: (_, { tourId, startDate, quantity }, { cache }) => {
+    addOrRemoveFromCart: (_, { tour, quantity, startDate }, { cache }) => {
       const { cartItems } = cache.readQuery({ query: GET_CART_ITEMS });
-      const returnValue = cartItems.find(tours => tours.tourId === tourId);
+      const returnValue = cartItems.find(
+        tours => tours.tour.tourId === tour.tourId
+      );
       const data = {
         cartItems:
           returnValue !== undefined
-            ? cartItems.filter(i => i.tourId !== tourId)
-            : [...cartItems, { tourId, startDate, quantity }]
+            ? cartItems.filter(i => i.tour.tourId !== tour.tourId)
+            : [...cartItems, { tour, quantity, startDate }]
       };
       cache.writeQuery({ query: GET_CART_ITEMS, data });
       return data.cartItems;

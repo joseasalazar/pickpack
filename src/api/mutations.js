@@ -32,14 +32,14 @@ export const UPLOAD_IMAGE = gql`
 
 export const TOGGLE_CART = gql`
   mutation addOrRemoveFromCart(
-    $tourId: ID!
-    $startDate: String!
+    $tour: Tour!
     $quantity: Int!
+    $startDate: String!
   ) {
     addOrRemoveFromCart(
-      tourId: $tourId
-      startDate: $startDate
+      tour: $tour
       quantity: $quantity
+      startDate: $startDate
     ) @client
   }
 `;
