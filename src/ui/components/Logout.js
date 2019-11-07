@@ -8,8 +8,7 @@ export const Logout = () => {
     <Button
       onClick={() => {
         client.writeData({ data: { isLoggedIn: false, userType: "" } });
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
+        localStorage.clear();
       }}
     >
       Log Out

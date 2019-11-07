@@ -29,3 +29,17 @@ export const UPLOAD_IMAGE = gql`
     }
   }
 `;
+
+export const TOGGLE_CART = gql`
+  mutation addOrRemoveFromCart(
+    $tourId: ID!
+    $startDate: String!
+    $quantity: Int!
+  ) {
+    addOrRemoveFromCart(
+      tourId: $tourId
+      startDate: $startDate
+      quantity: $quantity
+    ) @client
+  }
+`;
