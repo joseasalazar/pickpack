@@ -5,8 +5,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import TourCard from "../components/TourCard";
 import { GET_TOURS } from "../../api/queries";
 import { useQuery } from "@apollo/react-hooks";
-
-import Swal from 'sweetalert2'
+import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const StyledRow = styled(Row)`
   padding: 50px;
@@ -25,16 +25,17 @@ const TitleStyle = {
 
 const buttonStyle = {
   border: "0px",
-  backgroundColor: "white"
-}
+  backgroundColor: "white",
+  textDeocration: "none"
+};
 
 export function TourScreen() {
   const { data, loading, error } = useQuery(GET_TOURS);
   if (loading) {
     Swal.fire({
-      position: 'center',
-      type: 'success',
-      title: 'Cargando tours...',
+      position: "center",
+      type: "success",
+      title: "Cargando tours...",
       showConfirmButton: false,
       timer: 1500
     });
@@ -42,10 +43,10 @@ export function TourScreen() {
   }
   if (error) {
     Swal.fire({
-      type: 'error',
-      title: 'Oops...',
-      text: 'Ocurrió un error',
-      footer: '<a href>Intente más tarde</a>'
+      type: "error",
+      title: "Oops...",
+      text: "Ocurrió un error",
+      footer: "<a href>Intente más tarde</a>"
     });
     return null;
   }
@@ -57,7 +58,8 @@ export class Tours extends React.Component {
     super(props);
 
     this.state = {
-      tours: []
+      tours: [],
+      redirect: false
     };
   }
 
@@ -76,12 +78,9 @@ export class Tours extends React.Component {
               this.state.tours.map((tour, index) => {
                 return (
                   <Col key={index} className="col-md-4">
-                    <button style={buttonStyle}
-                      onClick={() =>
-                        window.location.replace(
-                          `tours/info/?tour=${tour.name}`
-                        )
-                      }
+                    <NavLink
+                      style={buttonStyle}
+                      to={`tours/info/?tour=${tour.name}`}
                     >
                       <TourCard
                         name={tour.name}
@@ -90,13 +89,13 @@ export class Tours extends React.Component {
                         image={tour.photo}
                         type={tour.type}
                       />
-                    </button>
+                    </NavLink>
                   </Col>
                 );
               })
             ) : (
-                <p>No hay tours</p>
-              )}
+              <p>No hay tours</p>
+            )}
           </StyledRow>
         </Container>
       </div>
