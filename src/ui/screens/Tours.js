@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import TourCard from "../components/TourCard";
 import { GET_TOURS } from "../../api/queries";
 import { useQuery } from "@apollo/react-hooks";
-import { NavLink } from "react-router-dom";
+
 import Swal from "sweetalert2";
 
 const StyledRow = styled(Row)`
@@ -13,6 +13,7 @@ const StyledRow = styled(Row)`
   margin: auto;
   box-sizing: border-box;
   min-width: 300px;
+  justify-content: center;
 `;
 
 const TitleStyle = {
@@ -23,11 +24,9 @@ const TitleStyle = {
   marginTop: "20px"
 };
 
-const buttonStyle = {
-  border: "0px",
-  backgroundColor: "white",
-  textDeocration: "none"
-};
+const NoToursP = styled.p`
+  font-size: 2rem;
+`;
 
 export function TourScreen() {
   const { data, loading, error } = useQuery(GET_TOURS);
@@ -67,7 +66,12 @@ export class Tours extends React.Component {
     this.setState({ tours: this.props.tours });
   }
 
-  //la ruta seria tours/info/?tour={tourId}
+  deleteTour(tour) {
+    var newArr = this.state.tours.filter(tours => tours.tourId !== tour.tourId);
+    console.log(newArr);
+    this.setState({ tours: newArr });
+  }
+
   render() {
     return (
       <div>
@@ -78,23 +82,21 @@ export class Tours extends React.Component {
               this.state.tours.map((tour, index) => {
                 return (
                   <Col key={index} className="col-md-4">
-                    <NavLink
-                      style={buttonStyle}
-                      to={`tours/info/?tour=${tour.name}`}
-                    >
-                      <TourCard
-                        name={tour.name}
-                        description={tour.description}
-                        price={tour.price}
-                        image={tour.photo}
-                        type={tour.type}
-                      />
-                    </NavLink>
+                    <TourCard
+                      name={tour.name}
+                      description={tour.description}
+                      price={tour.price}
+                      image={tour.photo}
+                      type={tour.type}
+                      onItemClick={() => this.deleteTour(tour)}
+                    />
                   </Col>
                 );
               })
             ) : (
-              <p>No hay tours</p>
+              <NoToursP>
+                Por el momento no tenemos tours, vuelve pronto!
+              </NoToursP>
             )}
           </StyledRow>
         </Container>
