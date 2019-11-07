@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import TourPhoto from "../assets/paris.jpeg";
 import DatePicker from "react-date-picker";
-
+import { IsLoggedIn } from "../components/IsLoggedIn";
 import { GET_TOUR_BY_NAME, GET_CART_ITEMS } from "../../api/queries";
 import { TOGGLE_CART } from "../../api/mutations";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { NavLink } from "react-router-dom";
 
 import Swal from "sweetalert2";
 
@@ -92,13 +92,23 @@ export function ActionButton({ tour }) {
   if (error) return <p>An error occurred</p>;
   return (
     <div>
-      <Button
-        onClick={addToCart}
-        variant="outline-dark"
-        style={{ width: "160px" }}
+      <IsLoggedIn
+        true={
+          <Button
+            onClick={addToCart}
+            variant="outline-dark"
+            style={{ width: "160px" }}
+          >
+            {tour.isInCart ? "Borrar del carrito" : "Agregar al carrito"}
+          </Button>
+        }
       >
-        {tour.isInCart ? "Borrar del carrito" : "Agregar al carrito"}
-      </Button>
+        <NavLink to="/login">
+          <Button variant="outline-dark" style={{ width: "160px" }}>
+            Favor de Iniciar Sesion Primero
+          </Button>
+        </NavLink>
+      </IsLoggedIn>
     </div>
   );
 }
@@ -150,13 +160,6 @@ class TourDescription extends Component {
                 <DatePicker onChange={this.onChange} value={this.state.date} />
               </Form.Group>
               <br></br>
-              {/* <Button
-                onClick={() => this.addToShoppingCart()}
-                variant="outline-dark"
-                style={{ width: "160px" }}
-              >
-                Agregar al carrito
-              </Button> */}
               <ActionButton tour={this.props.tour} />
             </Form>
           </Col>
