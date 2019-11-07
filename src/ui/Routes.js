@@ -7,12 +7,14 @@ import { Error404Screen } from "./screens/Errors/Error404Screen";
 import LogIn from "./screens/LogIn";
 import SignUp from "./screens/SignUp";
 import { Proveedores } from "./screens/Provedores";
-import { Tours } from "./screens/Tours";
 import { ComoFunciona } from "./screens/ComoFunciona";
 import { ShoppingCart } from "./screens/ShoppingCart";
+import { TourScreen } from "./screens/Tours";
+import { TourDescriptionScreen } from "./screens/TourDescription";
 
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import Registertourtrial from "./screens/RegisterTourTrial";
 
 export class Routes extends React.Component {
   render() {
@@ -20,17 +22,29 @@ export class Routes extends React.Component {
       <BrowserRouter>
         <div>
           <Header />
-          <Switch>
-            <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/login" component={LogIn} />
-            <Route exact path="/proveedores" component={Proveedores} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/proveedores" component={Proveedores} />
-            <Route exact path="/tours" component={Tours} />
-            <Route exact path="/comofunciona" component={ComoFunciona} />
-            <Route exact path="/compras" component={ShoppingCart} />
-            <Route exact path="" component={Error404Screen} />
-          </Switch>
+          <div className="bodyDiv">
+            <Switch>
+              <Route exact path="/" component={HomeScreen} />
+              <Route exact path="/login" component={LogIn} />
+              <Route exact path="/proveedores" component={Proveedores} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/proveedores" component={Proveedores} />
+              <Route exact path="/comofunciona" component={ComoFunciona} />
+              <Route exact path="/compras" component={ShoppingCart} />
+              <Route exact path="/tours" component={TourScreen} />
+              <Route
+                exact
+                path="/tours/info"
+                component={TourDescriptionScreen}
+              />
+              <Route
+                exact
+                path="/registertourtrial"
+                component={Registertourtrial}
+              />
+              <Route exact path="" component={Error404Screen} />
+            </Switch>
+          </div>
           <Footer />
         </div>
       </BrowserRouter>

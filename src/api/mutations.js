@@ -44,3 +44,38 @@ export const UPLOAD_IMAGE = gql`
     }
   }
 `;
+
+export const TOGGLE_CART = gql`
+  mutation addOrRemoveFromCart(
+    $tour: Tour!
+    $quantity: Int!
+    $startDate: String!
+  ) {
+    addOrRemoveFromCart(
+      tour: $tour
+      quantity: $quantity
+      startDate: $startDate
+    ) @client
+  }
+`;
+
+export const POST_TOUR_TO_DB = gql`
+  mutation registerTour(
+    $name: String!
+    $price: Int!
+    $startDate: String!
+    $endDate: String!
+    $type: String!
+  ) {
+    registerTour(
+      name: $name
+      price: $price
+      startDate: $startDate
+      endDate: $endDate
+      type: $type
+    ) {
+      name
+      price
+    }
+  }
+`;
