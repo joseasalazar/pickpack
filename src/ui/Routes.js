@@ -14,7 +14,7 @@ import { TourDescriptionScreen } from "./screens/TourDescription";
 
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import Registertourtrial from "./screens/RegisterTourTrial";
+import {RegisterTourTrial} from "./screens/RegisterTourTrial";
 
 export class Routes extends React.Component {
   render() {
@@ -32,7 +32,11 @@ export class Routes extends React.Component {
             <Route exact path="/compras" component={ShoppingCart} />
             <Route exact path="/tours" component={TourScreen} />
             <Route exact path="/tours/info" component={TourDescriptionScreen} />
-            <Route exact path="/registertourtrial" component={Registertourtrial} />
+            <Route
+              exact
+              path="/registerTourTrial"
+              component={RegisterTourTrial}
+            />
             <Route exact path="" component={Error404Screen} />
           </Switch>
           <Footer />

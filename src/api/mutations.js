@@ -44,3 +44,24 @@ export const UPLOAD_IMAGE = gql`
     }
   }
 `;
+
+export const POST_TOUR_TO_DB = gql`
+  mutation registerTour(
+    $name: String!
+    $price: Int!
+    $startDate: String!
+    $endDate: String!
+    $type: String!
+  ) {
+    registerTour(
+      name: $name
+      price: $price
+      startDate: $startDate
+      endDate: $endDate
+      type: $type
+    ) {
+      name
+      price
+    }
+  }
+`;

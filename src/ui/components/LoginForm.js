@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Button, Row } from "react-bootstrap";
@@ -44,7 +44,7 @@ const SingupSchema = Yup.object().shape({
     .required("La contraseña es requerida.")
 });
 
-export class LoginForm extends Component {
+export class LoginForm extends React.Component {
   render() {
     return (
       <Container>
