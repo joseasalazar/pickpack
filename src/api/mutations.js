@@ -1,5 +1,20 @@
 import gql from "graphql-tag";
 
+export const SIGNUP_USER = gql`
+  mutation signup($name: String!, $lastName: String!, $email: String!, $password: String!, $birthDate: String!, $gender: String!, $city: String!, $country: String!, $type: String!) {
+    signup(name: $name, lastName: $lastName, email: $email, password: $password, birthDate: $birthDate, gender: $gender, city: $city, country: $country, type: $type) {
+      token
+      user {
+        name
+        lastName
+        email
+        userId
+      }
+    }
+  }
+`;
+
+
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -41,5 +56,26 @@ export const TOGGLE_CART = gql`
       quantity: $quantity
       startDate: $startDate
     ) @client
+  }
+`;
+
+export const POST_TOUR_TO_DB = gql`
+  mutation registerTour(
+    $name: String!
+    $price: Int!
+    $startDate: String!
+    $endDate: String!
+    $type: String!
+  ) {
+    registerTour(
+      name: $name
+      price: $price
+      startDate: $startDate
+      endDate: $endDate
+      type: $type
+    ) {
+      name
+      price
+    }
   }
 `;
