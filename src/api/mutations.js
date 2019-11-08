@@ -1,8 +1,28 @@
 import gql from "graphql-tag";
 
 export const SIGNUP_USER = gql`
-  mutation signup($name: String!, $lastName: String!, $email: String!, $password: String!, $birthDate: String!, $gender: String!, $city: String!, $country: String!, $type: String!) {
-    signup(name: $name, lastName: $lastName, email: $email, password: $password, birthDate: $birthDate, gender: $gender, city: $city, country: $country, type: $type) {
+  mutation signup(
+    $name: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $birthDate: String!
+    $gender: String!
+    $city: String!
+    $country: String!
+    $type: String!
+  ) {
+    signup(
+      name: $name
+      lastName: $lastName
+      email: $email
+      password: $password
+      birthDate: $birthDate
+      gender: $gender
+      city: $city
+      country: $country
+      type: $type
+    ) {
       token
       user {
         name
@@ -13,7 +33,6 @@ export const SIGNUP_USER = gql`
     }
   }
 `;
-
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -66,6 +85,7 @@ export const POST_TOUR_TO_DB = gql`
     $startDate: String!
     $endDate: String!
     $type: String!
+    $photo: String
   ) {
     registerTour(
       name: $name
@@ -73,6 +93,7 @@ export const POST_TOUR_TO_DB = gql`
       startDate: $startDate
       endDate: $endDate
       type: $type
+      photo: $photo
     ) {
       name
       price

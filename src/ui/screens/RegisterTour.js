@@ -2,6 +2,8 @@ import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { ImageForm } from "../components/ImageForm";
 import { S3_SIGN, UPLOAD_IMAGE, POST_TOUR_TO_DB } from "../../api/mutations";
+import RegisterTourForm from "./RegisterTourForm";
+import Swal from "sweetalert2";
 
 export default function RegisterTour() {
   const [
@@ -17,32 +19,27 @@ export default function RegisterTour() {
     { loading: tourLoading, error: tourError }
   ] = useMutation(POST_TOUR_TO_DB);
 
-  if (uploadLoading) {
-    console.log("...loading upload");
-    return <p>loading...</p>;
+  if (uploadLoading || registerLoading || tourLoading) {
+    Swal.fire({
+      position: "center",
+      type: "success",
+      title: "Cargando...",
+      showConfirmButton: false,
+      timer: 1500
+    });
+    return null;
   }
-  if (uploadError) {
-    console.log(uploadError);
-    return <p>An error occurred</p>;
-  }
-
-  if (registerLoading) {
-    console.log("...loading register");
-    return <p>loading...</p>;
-  }
-  if (registerError) {
-    console.log(registerError);
-    return <p>An error occurred</p>;
+  if (uploadError || registerError || tourError) {
+    if (uploadError) return <p>{uploadError.message}</p>;
+    if (registerError) return <p>{registerError.message}</p>;
+    if (tourError) return <p>{tourError.message}</p>;
   }
 
-  if (tourLoading) {
-    console.log("...loading tour");
-    return <p>loading...</p>;
-  }
-  if (tourError) {
-    console.log(tourError);
-    return <p>An error occurred</p>;
-  }
-
-  return <ImageForm uploadToS3={uploadToS3} registerImage={registerImage} />;
+  return (
+    <RegisterTourForm
+      uploadToS3={uploadToS3}
+      registerImage={registerImage}
+      registerTour={registerTour}
+    />
+  );
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { USER_TYPE } from "../api/queries";
 import { useQuery } from "@apollo/react-hooks";
 

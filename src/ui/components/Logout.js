@@ -9,6 +9,7 @@ export const Logout = () => {
       onClick={() => {
         client.writeData({ data: { isLoggedIn: false, userType: "" } });
         localStorage.clear();
+        window.location.replace("/");
       }}
     >
       Log Out
