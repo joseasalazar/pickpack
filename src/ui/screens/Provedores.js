@@ -74,7 +74,9 @@ export class Proveedores extends React.Component {
               <Card.Title>
                 <h1 style={MainTitleStyle}>¡Bienvenido Picker!</h1>
               </Card.Title>
-              <a href="/comofunciona"><Button variant="dark">¿Como funciona?</Button></a>
+              <a href="/como-funciona">
+                <Button variant="dark">¿Como funciona?</Button>
+              </a>
             </Card.ImgOverlay>
           </Card>
         </StyledRow>

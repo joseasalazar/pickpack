@@ -57,8 +57,7 @@ export class Tours extends React.Component {
     super(props);
 
     this.state = {
-      tours: [],
-      redirect: false
+      tours: []
     };
   }
 
@@ -67,9 +66,23 @@ export class Tours extends React.Component {
   }
 
   deleteTour(tour) {
-    var newArr = this.state.tours.filter(tours => tours.tourId !== tour.tourId);
-    console.log(newArr);
-    this.setState({ tours: newArr });
+    Swal.fire({
+      title: "Eliminar tour?",
+      text: "Se borrará el tour de la base de datos",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí!"
+    }).then(result => {
+      if (result.value) {
+        var newArr = this.state.tours.filter(
+          tours => tours.tourId !== tour.tourId
+        );
+        this.setState({ tours: newArr });
+        Swal.fire("Tour Eliminado!", "El tour se ha eliminado.", "success");
+      }
+    });
   }
 
   render() {
@@ -78,7 +91,7 @@ export class Tours extends React.Component {
         <Container>
           <h1 style={TitleStyle}>Tours y Actividades</h1>
           <StyledRow>
-            {this.state.tours.length > 0 ? (
+            {this.state.tours !== undefined && this.state.tours.length > 0 ? (
               this.state.tours.map((tour, index) => {
                 return (
                   <Col key={index} className="col-md-4">

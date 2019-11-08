@@ -34,7 +34,7 @@ const ErrorSpan = styled.p`
   text-align: "left";
 `;
 
-const SingupSchema = Yup.object().shape({
+const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .required("El correo es requerido.")
     .email("Por favor ingresa un correo electrónico válido."),
@@ -48,63 +48,61 @@ export class LoginForm extends Component {
   render() {
     return (
       <Container>
-        <LoginCard>
-          <Formik
-            initialValues={{
-              email: "",
-              password: ""
-            }}
-            validationSchema={SingupSchema}
-            onSubmit={(values, { resetForm, setError, setSubmitting }) => {
-              this.props.login({
-                variables: { email: values.email, password: values.password }
-              });
-            }}
-          >
-            {({ values, errors, touched }) => (
-              <Form className="form" role="form" method="post">
-                <Title>Iniciar Sesión</Title>
-                <hr></hr>
-                <div className="form-group">
-                  <label>Correo Electrónico</label>
-                  <Field
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                  />
-                  {touched.email && errors.email && (
-                    <ErrorSpan>{errors.email}</ErrorSpan>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label>Contraseña</label>
-                  <Field
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    name="password"
-                  />
-                  {touched.password && errors.password && (
-                    <ErrorSpan>{errors.password}</ErrorSpan>
-                  )}
-                </div>
-                <Button type="submit" variant="primary" size="md" block>
-                  Iniciar Sesión
-                </Button>
-                <Row className="justify-content-md-center">
-                  <NavLink to="/signup">Crear una cuenta</NavLink>
-                </Row>
-                <Row className="justify-content-md-center">
-                  <NavLink to="/forgot-password">
-                    {" "}
-                    He olvidado mi contraseña{" "}
-                  </NavLink>
-                </Row>
-              </Form>
-            )}
-          </Formik>
-        </LoginCard>
+        <Formik
+          initialValues={{
+            email: "",
+            password: ""
+          }}
+          validationSchema={LoginSchema}
+          onSubmit={(values, { resetForm, setError, setSubmitting }) => {
+            this.props.login({
+              variables: { email: values.email, password: values.password }
+            });
+          }}
+        >
+          {({ values, errors, touched }) => (
+            <Form className="form" role="form" method="post">
+              <Title>Iniciar Sesión</Title>
+              <hr></hr>
+              <div className="form-group">
+                <label>Correo Electrónico</label>
+                <Field
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                />
+                {touched.email && errors.email && (
+                  <ErrorSpan>{errors.email}</ErrorSpan>
+                )}
+              </div>
+              <div className="form-group">
+                <label>Contraseña</label>
+                <Field
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                />
+                {touched.password && errors.password && (
+                  <ErrorSpan>{errors.password}</ErrorSpan>
+                )}
+              </div>
+              <Button type="submit" variant="primary" size="md" block>
+                Iniciar Sesión
+              </Button>
+              <Row className="justify-content-md-center">
+                <NavLink to="/signup">Crear una cuenta</NavLink>
+              </Row>
+              <Row className="justify-content-md-center">
+                <NavLink to="/forgot-password">
+                  {" "}
+                  He olvidado mi contraseña{" "}
+                </NavLink>
+              </Row>
+            </Form>
+          )}
+        </Formik>
       </Container>
     );
   }
