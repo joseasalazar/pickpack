@@ -73,6 +73,7 @@ export class ShoppingCart extends React.Component {
               <th>Precio</th>
               <th>Cantidad</th>
               <th>Total</th>
+              <th>Start Date</th>
               <th></th>
             </tr>
           </thead>
@@ -88,6 +89,7 @@ export class ShoppingCart extends React.Component {
                       <td>${item.tour.price}</td>
                       <td>{item.quantity}</td>
                       <td>${price}</td>
+                      <td>{item.startDate}</td>
                       {/* <td>
                         <a href="">
                           <Image src={Trash} alt="Eliminar" style={IconStyle} />
