@@ -94,10 +94,10 @@ export class Tours extends React.Component {
                 );
               })
             ) : (
-              <NoToursP>
-                Por el momento no tenemos tours, vuelve pronto!
+                <NoToursP>
+                  Por el momento no tenemos tours, vuelve pronto!
               </NoToursP>
-            )}
+              )}
           </StyledRow>
         </Container>
       </div>
