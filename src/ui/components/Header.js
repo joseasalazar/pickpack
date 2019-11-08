@@ -46,12 +46,9 @@ export class Header extends React.Component {
                 <NavLink to="/contacto">Contacto</NavLink>
               </Nav.Link>
             </Nav>
-            <RoleManager role={"admin"}>
-              <p>Admin</p>
-            </RoleManager>
             <RoleManager role={"customer"}>
               <Nav.Link>
-                <NavLink to="/">Mis Tours</NavLink>
+                <NavLink to="/compras">Mis Tours</NavLink>
               </Nav.Link>
             </RoleManager>
             <RoleManager role={"provider"}>

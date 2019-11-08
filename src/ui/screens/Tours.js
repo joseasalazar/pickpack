@@ -6,13 +6,14 @@ import TourCard from "../components/TourCard";
 import { GET_TOURS } from "../../api/queries";
 import { useQuery } from "@apollo/react-hooks";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const StyledRow = styled(Row)`
   padding: 50px;
   margin: auto;
   box-sizing: border-box;
   min-width: 300px;
+  justify-content: center;
 `;
 
 const TitleStyle = {
@@ -23,18 +24,17 @@ const TitleStyle = {
   marginTop: "20px"
 };
 
-const buttonStyle = {
-  border: "0px",
-  backgroundColor: "white"
-}
+const NoToursP = styled.p`
+  font-size: 2rem;
+`;
 
 export function TourScreen() {
   const { data, loading, error } = useQuery(GET_TOURS);
   if (loading) {
     Swal.fire({
-      position: 'center',
-      type: 'success',
-      title: 'Cargando tours...',
+      position: "center",
+      type: "success",
+      title: "Cargando tours...",
       showConfirmButton: false,
       timer: 1500
     });
@@ -42,10 +42,10 @@ export function TourScreen() {
   }
   if (error) {
     Swal.fire({
-      type: 'error',
-      title: 'Oops...',
-      text: 'Ocurrió un error',
-      footer: '<a href>Intente más tarde</a>'
+      type: "error",
+      title: "Oops...",
+      text: "Ocurrió un error",
+      footer: "<a href>Intente más tarde</a>"
     });
     return null;
   }
@@ -57,7 +57,8 @@ export class Tours extends React.Component {
     super(props);
 
     this.state = {
-      tours: []
+      tours: [],
+      redirect: false
     };
   }
 
@@ -65,7 +66,12 @@ export class Tours extends React.Component {
     this.setState({ tours: this.props.tours });
   }
 
-  //la ruta seria tours/info/?tour={tourId}
+  deleteTour(tour) {
+    var newArr = this.state.tours.filter(tours => tours.tourId !== tour.tourId);
+    console.log(newArr);
+    this.setState({ tours: newArr });
+  }
+
   render() {
     return (
       <div>
@@ -76,26 +82,21 @@ export class Tours extends React.Component {
               this.state.tours.map((tour, index) => {
                 return (
                   <Col key={index} className="col-md-4">
-                    <button style={buttonStyle}
-                      onClick={() =>
-                        window.location.replace(
-                          `tours/info/?tour=${tour.name}`
-                        )
-                      }
-                    >
-                      <TourCard
-                        name={tour.name}
-                        description={tour.description}
-                        price={tour.price}
-                        image={tour.photo}
-                        type={tour.type}
-                      />
-                    </button>
+                    <TourCard
+                      name={tour.name}
+                      description={tour.description}
+                      price={tour.price}
+                      image={tour.photo}
+                      type={tour.type}
+                      onItemClick={() => this.deleteTour(tour)}
+                    />
                   </Col>
                 );
               })
             ) : (
-                <p>No hay tours</p>
+                <NoToursP>
+                  Por el momento no tenemos tours, vuelve pronto!
+              </NoToursP>
               )}
           </StyledRow>
         </Container>
