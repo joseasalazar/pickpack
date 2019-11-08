@@ -1,14 +1,11 @@
-// import React, { Component } from "react";
-// import { Button, Container, Row } from "react-bootstrap";
-// import styled from "styled-components";
-// import * as Yup from "yup";
-// import { Formik, Field, Form } from "formik";
-
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Button, Container } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik, Field, Form } from "formik";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import moment from "moment";
 
 const Title = styled.p`
   text-align: center;
@@ -35,6 +32,71 @@ const TourSchema = Yup.object().shape({
 export default class RegisterTourForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      file: null,
+      name:
+        "Arrastra la imagen del tour aquí o da click para seleccionar una imagen."
+    };
+  }
+
+  onDrop = async file => {
+    this.setState({ file: file[0], name: file[0].name });
+  };
+
+  formatFilename = filename => {
+    const date = moment().format("YYYYMMDD");
+    const randomString = Math.random()
+      .toString(36)
+      .substring(2, 7);
+    const cleanFileName = filename.toLowerCase().replace(/[^a-z0-9]/g, "-");
+    const newFilename = `${date}-${randomString}-${cleanFileName}`;
+    return newFilename.substring(0, 60);
+  };
+
+  uploadImageToBucket = async (file, signedRequest) => {
+    const options = {
+      headers: {
+        "Content-Type": file.type
+      }
+    };
+    await axios.put(signedRequest, file, options);
+  };
+
+  async uploadImageToS3() {
+    const { name, file } = this.state;
+    const response = await this.props.uploadToS3({
+      variables: {
+        filename: this.formatFilename(file.name),
+        filetype: file.type
+      }
+    });
+
+    const { signedRequest, url } = response.data.uploadToS3;
+    await this.uploadImageToBucket(file, signedRequest);
+
+    const tourPhoto = await this.props.registerImage({
+      variables: {
+        url
+      }
+    });
+    return tourPhoto.data.registerImage;
+  }
+
+  async registerTour(values) {
+    var tourPhoto = null;
+    if (this.state.file !== null) {
+      tourPhoto = await this.uploadImageToS3();
+    }
+    const tour = await this.props.registerTour({
+      variables: {
+        name: values.name,
+        price: values.price,
+        startDate: values.startDate,
+        endDate: values.endDate,
+        type: values.type,
+        photo: tourPhoto !== null ? tourPhoto.url : ""
+      }
+    });
   }
 
   render() {
@@ -46,11 +108,12 @@ export default class RegisterTourForm extends Component {
             price: "",
             startDate: "",
             endDate: "",
-            type: "Day Tour"
+            type: "Day Tour",
+            image: ""
           }}
           validationSchema={TourSchema}
           onSubmit={(values, { resetForm, setError, setSubmitting }) => {
-            console.log(values);
+            this.registerTour(values);
           }}
         >
           {({ values, errors, touched }) => (
@@ -105,7 +168,23 @@ export default class RegisterTourForm extends Component {
                   <ErrorSpan>{errors.endDate}</ErrorSpan>
                 )}
               </div>
-
+              <div className="form-group">
+                <label>Image</label>
+                <Dropzone onDrop={this.onDrop}>
+                  {({ getRootProps, getInputProps }) => (
+                    <section>
+                      <div
+                        className="text-center pt-2"
+                        style={{ border: "1px solid black" }}
+                        {...getRootProps()}
+                      >
+                        <input id="image" name="image" {...getInputProps()} />
+                        <p>{this.state.name}</p>
+                      </div>
+                    </section>
+                  )}
+                </Dropzone>
+              </div>
               <Button type="submit" variant="primary" size="md">
                 Registrar Tour
               </Button>

@@ -15,6 +15,7 @@ import { TourDescriptionScreen } from "./screens/TourDescription";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import RegisterTour from "./screens/RegisterTour";
+import { RoleManager } from "./RoleManager";
 
 export class Routes extends React.Component {
   render() {
