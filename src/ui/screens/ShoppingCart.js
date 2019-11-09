@@ -28,11 +28,11 @@ export function CartScreen() {
 
   if (loading) {
     Swal.fire({
-      position: "center",
-      type: "success",
       title: "Cargando tours...",
-      showConfirmButton: false,
-      timer: 1500
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
     });
     return null;
   }
@@ -41,11 +41,14 @@ export function CartScreen() {
       type: "error",
       title: "Oops...",
       text: error.message,
-      footer: "<a href>Intente más tarde</a>"
+      footer: "<p>Intente más tarde</p>"
     });
-    return null;
+    return <ShoppingCart />;
   }
-  if (data) return <ShoppingCart cartItems={data.cartItems} />;
+  if (data) {
+    Swal.close();
+    return <ShoppingCart cartItems={data.cartItems} />;
+  }
 }
 export class ShoppingCart extends React.Component {
   constructor(props) {
@@ -79,31 +82,32 @@ export class ShoppingCart extends React.Component {
           </thead>
           <tbody>
             {this.state.cartItems !== undefined &&
-              this.state.cartItems.length > 0 ? (
-                this.state.cartItems.map((item, index) => {
-                  var price = item.tour.price * item.quantity
-                  total = total + price;
-                  return (
-                    <tr>
-                      <td>{item.tour.name}</td>
-                      <td>${item.tour.price}</td>
-                      <td>{item.quantity}</td>
-                      <td>${price}</td>
-                      <td>{item.startDate}</td>
-                      {/* <td>
+            this.state.cartItems.length > 0 ? (
+              this.state.cartItems.map((item, index) => {
+                var price = item.tour.price * item.quantity;
+                total = total + price;
+                return (
+                  <tr>
+                    <td>{item.tour.name}</td>
+                    <td>${item.tour.price}</td>
+                    <td>{item.quantity}</td>
+                    <td>${price}</td>
+                    <td>{item.startDate}</td>
+                    {/* <td>
                         <a href="">
                           <Image src={Trash} alt="Eliminar" style={IconStyle} />
                         </a>
                       </td> */}
-                    </tr>
-
-                  );
-                })
-              ) : (
-                <tr>
-                  <th className="text-center" colspan="4">Por el momento no tienes tours en tu carrito</th>
-                </tr>
-              )}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <th className="text-center" colspan="4">
+                  Por el momento no tienes tours en tu carrito
+                </th>
+              </tr>
+            )}
             <tr>
               <p>Total: {total}</p>
             </tr>

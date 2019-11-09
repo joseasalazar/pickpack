@@ -37,7 +37,9 @@ export class Routes extends React.Component {
                 path="/tours/info"
                 component={TourDescriptionScreen}
               />
-              <Route exact path="/registrar-tour" component={RegisterTour} />
+              <RoleManager role="admin">
+                <Route exact path="/registrar-tour" component={RegisterTour} />
+              </RoleManager>
               <Route exact path="" component={Error404Screen} />
             </Switch>
           </div>

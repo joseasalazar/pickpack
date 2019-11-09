@@ -50,11 +50,11 @@ export function TourDescriptionScreen() {
 
   if (loadingTours || loadingCart) {
     Swal.fire({
-      position: "center",
-      type: "success",
-      title: "Cargando tour...",
-      showConfirmButton: false,
-      timer: 1500
+      title: "Cargando...",
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
     });
     return null;
   }
@@ -62,19 +62,21 @@ export function TourDescriptionScreen() {
     Swal.fire({
       type: "error",
       title: "Oops...",
-      text: "Ocurrió un error",
-      footer: "<a href>Intente más tarde</a>"
+      text: errorTours ? errorTours.message : errorCart.message,
+      footer: "<p>Intente más tarde</p>"
     });
-    return null;
+    return <TourDescription />;
   }
 
-  if (tour && cartItems)
+  if (tour && cartItems) {
+    Swal.close();
     return (
       <TourDescription
         tour={tour.getTourByName}
         cartItems={cartItems.cartItems}
       />
     );
+  }
 }
 
 export function ActionButton({ tour, startDate, quantity }) {
@@ -123,10 +125,10 @@ class TourDescription extends Component {
     };
   }
 
-  onChange = (date) => this.setState({ date });
+  onChange = date => this.setState({ date });
 
   handleSelectOnChange(quantity) {
-    this.setState({ quantity: quantity.target.value })
+    this.setState({ quantity: quantity.target.value });
   }
 
   render() {
@@ -151,7 +153,11 @@ class TourDescription extends Component {
             <Form>
               <Form.Group controlId="exampleForm.ControlPeople">
                 <Form.Label>Número de Personas</Form.Label>
-                <Form.Control onChange={(e) => this.handleSelectOnChange(e)} as="select" style={{ maxWidth: "160px" }}>
+                <Form.Control
+                  onChange={e => this.handleSelectOnChange(e)}
+                  as="select"
+                  style={{ maxWidth: "160px" }}
+                >
                   {options.map(option => (
                     <option key={option} value={option}>
                       {option}
@@ -165,7 +171,11 @@ class TourDescription extends Component {
                 <DatePicker onChange={this.onChange} value={this.state.date} />
               </Form.Group>
               <br></br>
-              <ActionButton tour={this.props.tour} startDate={this.state.date.toString()} quantity={this.state.quantity} />
+              <ActionButton
+                tour={this.props.tour}
+                startDate={this.state.date.toString()}
+                quantity={this.state.quantity}
+              />
             </Form>
           </Col>
         </Row>
