@@ -9,8 +9,10 @@ const roles = {
 };
 export function RoleManager(props) {
   const { data } = useQuery(USER_TYPE);
-
-  if (roles[props.role] === data.userType) {
+  if (
+    roles[props.role] === data.userType ||
+    (props.role === "customer" && data.userType === null)
+  ) {
     return props.children;
   } else {
     return <div></div>;

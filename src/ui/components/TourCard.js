@@ -19,7 +19,7 @@ const TourCard = props => {
             <div className="overflow">
               <img
                 src={props.image}
-                alt={props.image}
+                alt={props.name}
                 className="card-img-top tour-card-img"
               />
             </div>
@@ -38,7 +38,7 @@ const TourCard = props => {
             <div className="overflow">
               <img
                 src={props.image}
-                alt={props.image}
+                alt={props.name}
                 className="card-img-top tour-card-img"
               />
             </div>

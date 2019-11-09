@@ -8,6 +8,7 @@ export default function LogIn() {
   const client = useApolloClient();
   const [login, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
+      Swal.close();
       window.location.replace("/");
       localStorage.setItem("token", login.token);
       localStorage.setItem("role", login.user.type);
@@ -19,26 +20,23 @@ export default function LogIn() {
 
   if (loading) {
     Swal.fire({
-      position: "center",
-      type: "success",
       title: "Cargando...",
-      showConfirmButton: false,
-      timer: 1500
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
     });
-    return null;
+    return <LoginForm />;
   }
   if (error) {
     Swal.fire({
       type: "error",
       title: "Oops...",
       text: error.message,
-      footer: "<a href>Intente más tarde</a>"
+      footer: "<p>Intente más tarde</p>"
     });
-    return null;
+    return <LoginForm />;
   }
-
-  if (loading) return <p>loading...</p>;
-  if (error) return <p>An error occurred</p>;
 
   return <LoginForm login={login} />;
 }

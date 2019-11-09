@@ -17,22 +17,41 @@ export default function RegisterTour() {
   const [
     registerTour,
     { loading: tourLoading, error: tourError }
-  ] = useMutation(POST_TOUR_TO_DB);
+  ] = useMutation(POST_TOUR_TO_DB, {
+    onCompleted({ registerTour }) {
+      Swal.close();
+      Swal.fire({
+        position: "center",
+        type: "success",
+        title: "Tour Registrado!",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  });
 
   if (uploadLoading || registerLoading || tourLoading) {
     Swal.fire({
-      position: "center",
-      type: "success",
-      title: "Cargando...",
-      showConfirmButton: false,
-      timer: 1500
+      title: "Registrando tour...",
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
     });
     return null;
   }
   if (uploadError || registerError || tourError) {
-    if (uploadError) return <p>{uploadError.message}</p>;
-    if (registerError) return <p>{registerError.message}</p>;
-    if (tourError) return <p>{tourError.message}</p>;
+    Swal.fire({
+      type: "error",
+      title: "Oops...",
+      text: uploadError
+        ? uploadError.message
+        : registerError
+        ? registerError.message
+        : tourError.message,
+      footer: "<p>Intente más tarde</p>"
+    });
+    return <RegisterTourForm />;
   }
 
   return (

@@ -32,11 +32,11 @@ export function TourScreen() {
   const { data, loading, error } = useQuery(GET_TOURS);
   if (loading) {
     Swal.fire({
-      position: "center",
-      type: "success",
-      title: "Cargando tours...",
-      showConfirmButton: false,
-      timer: 1500
+      title: "Cargando...",
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
     });
     return null;
   }
@@ -44,12 +44,15 @@ export function TourScreen() {
     Swal.fire({
       type: "error",
       title: "Oops...",
-      text: "Ocurrió un error",
-      footer: "<a href>Intente más tarde</a>"
+      text: error.message,
+      footer: "<p>Intente más tarde</p>"
     });
-    return null;
+    return <Tours />;
   }
-  if (data) return <Tours tours={data.tours} />;
+  if (data) {
+    Swal.close();
+    return <Tours tours={data.tours} />;
+  }
 }
 
 export class Tours extends React.Component {
@@ -97,7 +100,7 @@ export class Tours extends React.Component {
                   <Col key={index} className="col-md-4">
                     <TourCard
                       name={tour.name}
-                      description={tour.description}
+                      // description={tour.description}
                       price={tour.price}
                       image={tour.photo}
                       type={tour.type}
@@ -107,10 +110,10 @@ export class Tours extends React.Component {
                 );
               })
             ) : (
-                <NoToursP>
-                  Por el momento no tenemos tours, vuelve pronto!
+              <NoToursP>
+                Por el momento no tenemos tours, vuelve pronto!
               </NoToursP>
-              )}
+            )}
           </StyledRow>
         </Container>
       </div>
