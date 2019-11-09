@@ -12,7 +12,7 @@ export const Logout = () => {
         window.location.replace("/");
       }}
     >
-      Log Out
+      Cerrar Sesión
     </Button>
   );
 };

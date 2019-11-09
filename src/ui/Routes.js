@@ -24,24 +24,39 @@ export class Routes extends React.Component {
         <div>
           <Header />
           <div className="bodyDiv">
-            <Switch>
-              <Route exact path="/" component={HomeScreen} />
-              <Route exact path="/login" component={LogIn} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/proveedores" component={Proveedores} />
-              <Route exact path="/como-funciona" component={ComoFunciona} />
-              <Route exact path="/compras" component={CartScreen} />
-              <Route exact path="/tours" component={TourScreen} />
-              <Route
-                exact
-                path="/tours/info"
-                component={TourDescriptionScreen}
-              />
-              <RoleManager role="admin">
+            <RoleManager role={"admin"}>
+              <Switch>
+                <Route exact path="/" component={HomeScreen} />
+                <Route exact path="/proveedores" component={Proveedores} />
+                <Route exact path="/como-funciona" component={ComoFunciona} />
+                <Route exact path="/compras" component={CartScreen} />
+                <Route exact path="/tours" component={TourScreen} />
+                <Route
+                  exact
+                  path="/tours/info"
+                  component={TourDescriptionScreen}
+                />
                 <Route exact path="/registrar-tour" component={RegisterTour} />
-              </RoleManager>
-              <Route exact path="" component={Error404Screen} />
-            </Switch>
+                <Route exact path="" component={Error404Screen} />
+              </Switch>
+            </RoleManager>
+            <RoleManager role={"customer"}>
+              <Switch>
+                <Route exact path="/" component={HomeScreen} />
+                <Route exact path="/login" component={LogIn} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/proveedores" component={Proveedores} />
+                <Route exact path="/como-funciona" component={ComoFunciona} />
+                <Route exact path="/compras" component={CartScreen} />
+                <Route exact path="/tours" component={TourScreen} />
+                <Route
+                  exact
+                  path="/tours/info"
+                  component={TourDescriptionScreen}
+                />
+                <Route exact path="" component={Error404Screen} />
+              </Switch>
+            </RoleManager>
           </div>
           <Footer />
         </div>
