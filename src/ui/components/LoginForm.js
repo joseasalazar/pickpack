@@ -34,7 +34,7 @@ const ErrorSpan = styled.p`
   text-align: "left";
 `;
 
-const SingupSchema = Yup.object().shape({
+const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .required("El correo es requerido.")
     .email("Por favor ingresa un correo electrónico válido."),
@@ -54,7 +54,7 @@ export class LoginForm extends Component {
               email: "",
               password: ""
             }}
-            validationSchema={SingupSchema}
+            validationSchema={LoginSchema}
             onSubmit={(values, { resetForm, setError, setSubmitting }) => {
               this.props.login({
                 variables: { email: values.email, password: values.password }

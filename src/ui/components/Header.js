@@ -12,6 +12,23 @@ const NavLinks = styled(Nav.Link)`
   font-family: "Roboto", sans-serif;
 `;
 
+export function MyTours() {
+  return (
+    <div>
+      <RoleManager role={"customer"}>
+        <Nav.Link>
+          <NavLink to="/compras">Mis Tours</NavLink>
+        </Nav.Link>
+      </RoleManager>
+      <RoleManager role={"provider"}>
+        <Nav.Link>
+          <NavLink to="/">Mis Tours</NavLink>
+        </Nav.Link>
+      </RoleManager>
+    </div>
+  );
+}
+
 export class Header extends React.Component {
   render() {
     return (
@@ -42,20 +59,19 @@ export class Header extends React.Component {
               <Nav.Link>
                 <NavLink to="/proveedores">Proveedores</NavLink>
               </Nav.Link>
+              <RoleManager role={"admin"}>
+                <Nav.Link>
+                  <NavLink to="/registrar-tour">Registrar Tour</NavLink>
+                </Nav.Link>
+              </RoleManager>
               <Nav.Link>
                 <NavLink to="/contacto">Contacto</NavLink>
               </Nav.Link>
             </Nav>
-            <RoleManager role={"customer"}>
-              <Nav.Link>
-                <NavLink to="/">Mis Tours</NavLink>
-              </Nav.Link>
-            </RoleManager>
-            <RoleManager role={"provider"}>
-              <Nav.Link>
-                <NavLink to="/">Mis Tours</NavLink>
-              </Nav.Link>
-            </RoleManager>
+            <IsLoggedIn true={<MyTours />}>
+              <div></div>
+            </IsLoggedIn>
+
             <IsLoggedIn true={<Logout />}>
               <Nav>
                 <Nav.Link>

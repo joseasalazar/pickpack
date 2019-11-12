@@ -50,11 +50,11 @@ export function TourDescriptionScreen() {
 
   if (loadingTours || loadingCart) {
     Swal.fire({
-      position: "center",
-      type: "success",
-      title: "Cargando tour...",
-      showConfirmButton: false,
-      timer: 1500
+      title: "Cargando...",
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
     });
     return null;
   }
@@ -62,24 +62,26 @@ export function TourDescriptionScreen() {
     Swal.fire({
       type: "error",
       title: "Oops...",
-      text: "Ocurrió un error",
-      footer: "<a href>Intente más tarde</a>"
+      text: errorTours ? errorTours.message : errorCart.message,
+      footer: "<p>Intente más tarde</p>"
     });
-    return null;
+    return <TourDescription />;
   }
 
-  if (tour && cartItems)
+  if (tour && cartItems) {
+    Swal.close();
     return (
       <TourDescription
         tour={tour.getTourByName}
         cartItems={cartItems.cartItems}
       />
     );
+  }
 }
 
-export function ActionButton({ tour }) {
+export function ActionButton({ tour, startDate, quantity }) {
   const [addToCart, { loading, error }] = useMutation(TOGGLE_CART, {
-    variables: { tour, quantity: 1, startDate: "10/10/10" },
+    variables: { tour, quantity, startDate },
     refetchQueries: [
       {
         query: GET_TOUR_BY_NAME,
@@ -118,11 +120,16 @@ class TourDescription extends Component {
     super(props);
 
     this.state = {
-      date: new Date()
+      date: new Date(),
+      quantity: 0
     };
   }
 
   onChange = date => this.setState({ date });
+
+  handleSelectOnChange(quantity) {
+    this.setState({ quantity: quantity.target.value });
+  }
 
   render() {
     const options = [];
@@ -146,7 +153,11 @@ class TourDescription extends Component {
             <Form>
               <Form.Group controlId="exampleForm.ControlPeople">
                 <Form.Label>Número de Personas</Form.Label>
-                <Form.Control as="select" style={{ maxWidth: "160px" }}>
+                <Form.Control
+                  onChange={e => this.handleSelectOnChange(e)}
+                  as="select"
+                  style={{ maxWidth: "160px" }}
+                >
                   {options.map(option => (
                     <option key={option} value={option}>
                       {option}
@@ -160,7 +171,11 @@ class TourDescription extends Component {
                 <DatePicker onChange={this.onChange} value={this.state.date} />
               </Form.Group>
               <br></br>
-              <ActionButton tour={this.props.tour} />
+              <ActionButton
+                tour={this.props.tour}
+                startDate={this.state.date.toString()}
+                quantity={this.state.quantity}
+              />
             </Form>
           </Col>
         </Row>
