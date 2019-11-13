@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Table, Image } from "react-bootstrap";
+import { Table, Image, Container, Button } from "react-bootstrap";
 import Trash from "../assets/trash.png";
 import { GET_CART_ITEMS } from "../../api/queries";
 import { useQuery } from "@apollo/react-hooks";
@@ -22,6 +22,17 @@ const TitleStyle = {
 const IconStyle = {
   maxWidth: "20px"
 };
+
+const totalStyle = {
+  fontWeight: "300",
+  fontSize: "20px",
+  marginTop: "10px"
+}
+
+const dateStyle = {
+  textOverflow: "ellipsis",
+  maxWidth: "100px"
+}
 
 export function CartScreen() {
   const { data, loading, error } = useQuery(GET_CART_ITEMS);
@@ -57,9 +68,16 @@ export class ShoppingCart extends React.Component {
     this.state = {
       cartItems: []
     };
+
   }
+
   componentDidMount() {
     this.setState({ cartItems: this.props.cartItems });
+  }
+
+  deleteTour(index) {
+    this.state.cartItems.splice(index, 1);
+    this.forceUpdate();
   }
 
   render() {
@@ -69,50 +87,52 @@ export class ShoppingCart extends React.Component {
         <StyledContainer>
           <h2 style={TitleStyle}>Carrito de compra</h2>
         </StyledContainer>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Total</th>
-              <th>Start Date</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.cartItems !== undefined &&
-            this.state.cartItems.length > 0 ? (
-              this.state.cartItems.map((item, index) => {
-                var price = item.tour.price * item.quantity;
-                total = total + price;
-                return (
-                  <tr>
-                    <td>{item.tour.name}</td>
-                    <td>${item.tour.price}</td>
-                    <td>{item.quantity}</td>
-                    <td>${price}</td>
-                    <td>{item.startDate}</td>
-                    {/* <td>
-                        <a href="">
-                          <Image src={Trash} alt="Eliminar" style={IconStyle} />
-                        </a>
-                      </td> */}
-                  </tr>
-                );
-              })
-            ) : (
+        <Container>
+          <Table responsive>
+            <thead>
               <tr>
-                <th className="text-center" colspan="4">
-                  Por el momento no tienes tours en tu carrito
-                </th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Start Date</th>
+                <th></th>
               </tr>
-            )}
-            <tr>
-              <p>Total: {total}</p>
-            </tr>
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {this.state.cartItems !== undefined &&
+                this.state.cartItems.length > 0 ? (
+                  this.state.cartItems.map((item, index) => {
+                    var price = item.tour.price * item.quantity
+                    total = total + price;
+                    return (
+                      <tr>
+                        <td>{item.tour.name}</td>
+                        <td>${item.tour.price}</td>
+                        <td>{item.quantity}</td>
+                        <td>${price}</td>
+                        <td style={dateStyle}>{item.startDate}</td>
+                        <td>
+                          <Button variant="light" onClick={this.deleteTour.bind(this, index)}>
+                            <Image src={Trash} alt="Eliminar" style={IconStyle} />
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <th className="text-center" colspan="4">
+                      Por el momento no tienes tours en tu carrito
+                </th>
+                  </tr>
+                )}
+              <Container>
+                <p style={totalStyle}><b>Total: $</b>{total}</p>
+              </Container>
+            </tbody>
+          </Table>
+        </Container>
       </div>
     );
   }
