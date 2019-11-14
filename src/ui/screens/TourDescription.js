@@ -121,7 +121,7 @@ class TourDescription extends Component {
 
     this.state = {
       date: new Date(),
-      quantity: 0
+      quantity: 1
     };
   }
 
