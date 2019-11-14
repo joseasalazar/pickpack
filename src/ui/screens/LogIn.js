@@ -40,3 +40,4 @@ export default function LogIn() {
 
   return <LoginForm login={login} />;
 }
+

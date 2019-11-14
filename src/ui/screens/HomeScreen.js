@@ -1,167 +1,168 @@
 import React from "react";
 
-import { Card, Figure, Row, Container, Col, Carousel } from "react-bootstrap";
-
+import { Card, Figure, Row, Container, Col, Carousel, Button, Jumbotron, Image } from "react-bootstrap";
 
 import styled from "styled-components";
 import BG from "../assets/hombreenelmar.png";
-import BG1 from "../assets/guysinsnow.jpg";
 import Typist from "react-typist";
-import TourCardHomePage from "../components/TourCardHomeScreen";
 import Huaxteca from "../assets/huaxteca.png";
 import Buggy from "../assets/junglebuggy.png";
 import Surfing from "../assets/surfingontheroad.png";
 import Tingo from "../assets/tingoaltango.png";
 import Oaxaca from "../assets/oaxaca.png";
-import Riviera from "../assets/riviera.png";
 import Collage from "../assets/collage.png";
-//Carrusel
-import Tulum from "../assets/Tulum.png";
-import Hierve from "../assets/Oaxaca-hierveelagua.png";
+import Cactus from "../assets/mexicocactus.jpg";
+import Luggage from "../assets/luggage.png";
+import Flight from "../assets/flight.png";
+import Passport from "../assets/passport.png";
 
-const tours = [
-  {
-    id: 1,
-    name: "Populares",
-    image:
-      "https://images.pexels.com/photos/672532/pexels-photo-672532.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-  },
-  {
-    id: 2,
-    name: "Favoritos",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. ",
-    image:
-      "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-  }
-];
-
-const StyledRow = styled(Row)`
-    padding: 20px;
-    margin: auto;
-    min-width: 300px;
-`;
-
-const Title = styled(Card.Title)`
-  text-align: left;
+const Title = styled.h1`
   color: white;
-  font-family: "Roboto", sans-serif;
-  font-size: xx-large;
+  font-size: 200%;
+  margin-bottom: 25%;
 `;
 
 const subTitle = {
   textAlign: "center",
-
-  fontFamily: "Roboto, sans-serif"
+  fontSize: "200%",
+  backgroundColor: "white"
 };
 
-const BodyText = styled(Card.Text)`
-  text-align: left;
-  font-weight: bold;
+const CarouselStyle = {
+  margin: "0px",
+  padding: "0px",
+  maxWidth:"100%",
+};
 
-  font-size: x-large;
+const CarouselCaption = styled(Carousel.Caption) `
+  font-size: 300%;
 `;
+
+const middleCard = {
+  margin: "50px",
+}
+
+const IconStyle = {
+  maxWidth: "70%",
+  maxHeight: "70%"
+}
+
+const JumbotronTitle = {
+  fontSize: "200%"
+}
+
+const homeFooter = {
+  marginBottom : "0px",
+  marginTop: "30px",
+  textAlign: "center"
+}
 
 export class HomeScreen extends React.Component {
   render() {
     return (
       <div>
-        <Card className="text-white">
-          <Card.Img src={BG} alt="guy with bicycle" />
-          <Card.ImgOverlay>
-            <Card.Title style={{ textAlign: "center", fontSize: "xx-large" }}>
-              <h1>PickPack</h1>
-            </Card.Title>
-            <Card.Text style={{ textAlign: "center", fontSize: "large" }}>
-              {" "}
-              <Typist style={subTitle}>¡Ve lejos, comienza aquí!</Typist>
-            </Card.Text>
-          </Card.ImgOverlay>
-        </Card>
-        <br></br>
-        <Carousel>
+        <Carousel interval="3000">
           <Carousel.Item>
             <img
-              style={{ margin: "auto" }}
-              className="d-block w-50"
-              src={Tulum}
+              src={BG}
               alt="First slide"
+              style={CarouselStyle}
             />
+            <CarouselCaption>
+              <Title>PickPack</Title>
+              <Typist style={subTitle}>¡Ve lejos, comienza aquí!</Typist>
+                <Button variant="dark" size="lg" href="/tours">Ver viajes</Button>
+            </CarouselCaption>
           </Carousel.Item>
           <Carousel.Item>
             <img
-              style={{ margin: "auto" }}
-              className="d-block w-50"
-              src={Hierve}
-              alt="First slide"
+              src={Cactus}
+              alt="Second slide"
+              style={CarouselStyle}
             />
+            <CarouselCaption>
+              <Title>PickPack</Title>
+              <Typist style={subTitle}>¡Únete a este grupo de viajeros!</Typist>
+              <Button variant="dark" size="lg" href="/login">Crea una cuenta</Button>
+            </CarouselCaption>
           </Carousel.Item>
         </Carousel>
-             
-        <h1 style={{ textAlign: "center" }}>¡Conoce nuestras opciones! </h1>
-               <Card className="text-white"></Card>
-        <Card className="text-white">
-          <Card.Img src={BG1} alt="guys in the snow" />
-          <Card.ImgOverlay>
-            <Title>#Packers</Title>
-            <Card.Text>
-              Creemos en lugares, en personas, en experiencias. Creemos en
-              viajes, historias, vivencias.
-              <Card.Text>
-                Creemos en viajeros, turistas y aventureros. Pero sobre todo,
-                creemos en ti y en la libertad que mereces.
-              </Card.Text>
-            </Card.Text>
-          </Card.ImgOverlay>
-        </Card>
+
+        <Jumbotron fluid style={subTitle}>
+          <Container>
+            <h1 style={JumbotronTitle}>#Packers</h1>
+            <hr/>
+            <p style={middleCard}>
+            Creemos en lugares, en personas, en experiencias. Creemos en viajes, historias, vivencias.
+            Creemos en viajeros, turistas y aventureros. Pero sobre todo, creemos en ti y en la libertad que mereces.
+            </p>
+          </Container>
+          <Container>
+            <Row>
+            <Col xs={6} md={4}>
+              <Image src={Flight} style={IconStyle}  />
+            </Col>
+            <Col xs={6} md={4}>
+              <Image src={Luggage} style={IconStyle}  />
+            </Col>
+            <Col xs={6} md={4}>
+              <Image src={Passport} style={IconStyle}  />
+            </Col>
+            </Row>
+          </Container>
+        </Jumbotron>
+
         <Card>
           <Card.Img src={Collage}></Card.Img>
         </Card>
-        <h5 style={{ textAlign: "center" }}>
-          ¡Conoce nuestros Pickers Favoritos!
-        </h5>
-        <Container>
-          <Row className="justify-content-md-center">
-            <Col xs lg="2">
-              <Figure>
-                <Figure.Image
-                  src={Oaxaca}
-                  width={64}
-                  height={64}
-                ></Figure.Image>
-              </Figure>
-            </Col>
-            <Col xs lg="2">
-              <Figure>
-                <Figure.Image src={Tingo} width={64} height={64}></Figure.Image>
-              </Figure>
-            </Col>
-            <Col xs lg="2">
-              <Figure>
-                <Figure.Image
-                  src={Surfing}
-                  width={64}
-                  height={64}
-                ></Figure.Image>
-              </Figure>
-            </Col>
 
-            <Col xs lg="2">
-              <Figure>
-                <Figure.Image
-                  src={Huaxteca}
-                  width={64}
-                  height={64}
-                ></Figure.Image>
-              </Figure>
-            </Col>
-            <Col xs lg="2">
-              <Figure>
-                <Figure.Image src={Buggy} width={64} height={64}></Figure.Image>
-              </Figure>
-            </Col>
-          </Row>
-        </Container>
+        <div style={homeFooter} >
+          <h1>
+            ¡Conoce nuestros Pickers Favoritos!
+          </h1>
+          <Container>
+            <Row className="justify-content-md-center">
+              <Col xs lg="2">
+                <Figure>
+                  <Figure.Image
+                    src={Oaxaca}
+                    width={120}
+                    height={120}
+                  ></Figure.Image>
+                </Figure>
+              </Col>
+              <Col xs lg="2">
+                <Figure>
+                  <Figure.Image src={Tingo} width={120} height={120}></Figure.Image>
+                </Figure>
+              </Col>
+              <Col xs lg="2">
+                <Figure>
+                  <Figure.Image
+                    src={Surfing}
+                    width={120}
+                    height={120}
+                  ></Figure.Image>
+                </Figure>
+              </Col>
+              <Col xs lg="2">
+                <Figure>
+                  <Figure.Image
+                    src={Huaxteca}
+                    width={250}
+                    height={250}
+                  ></Figure.Image>
+                </Figure>
+              </Col>
+              <Col xs lg="2">
+                <Figure>
+                  <Figure.Image src={Buggy} width={120} height={120}></Figure.Image>
+                </Figure>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
                                        
       </div>
     );
