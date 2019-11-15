@@ -5,6 +5,7 @@ import Trash from "../assets/trash.png";
 import { GET_CART_ITEMS } from "../../api/queries";
 import { useQuery } from "@apollo/react-hooks";
 import Swal from "sweetalert2";
+import Moment from 'react-moment';
 
 const StyledContainer = styled.div`
   padding-left: 80px;
@@ -20,7 +21,8 @@ const TitleStyle = {
 };
 
 const IconStyle = {
-  maxWidth: "20px"
+  maxWidth: "20px",
+  maxHeight: "20px"
 };
 
 const totalStyle = {
@@ -76,7 +78,9 @@ export class ShoppingCart extends React.Component {
   }
 
   deleteTour(index) {
-    this.state.cartItems.splice(index, 1);
+    var newItems = this.state.cartItems;
+    newItems.splice(index, 1);
+    this.setState({cartItems: newItems});
     this.forceUpdate();
   }
 
@@ -92,10 +96,10 @@ export class ShoppingCart extends React.Component {
             <thead>
               <tr>
                 <th>Producto</th>
+                <th>Fecha</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Total</th>
-                <th>Start Date</th>
                 <th></th>
               </tr>
             </thead>
@@ -108,28 +112,35 @@ export class ShoppingCart extends React.Component {
                     return (
                       <tr>
                         <td>{item.tour.name}</td>
+                        <td style={dateStyle}><Moment format="DD / MM / YYYY">{item.startDate}</Moment></td>
                         <td>${item.tour.price}</td>
                         <td>{item.quantity}</td>
                         <td>${price}</td>
-                        <td style={dateStyle}>{item.startDate}</td>
                         <td>
-                          <Button variant="light" onClick={this.deleteTour.bind(this, index)}>
+                          <Button variant="link" onClick={this.deleteTour.bind(this, index)}>
                             <Image src={Trash} alt="Eliminar" style={IconStyle} />
                           </Button>
                         </td>
-                      </tr>
+                      </tr>                    
                     );
                   })
-                ) : (
+                ) 
+                
+                : (
                   <tr>
                     <th className="text-center" colspan="4">
                       Por el momento no tienes tours en tu carrito
                 </th>
                   </tr>
                 )}
-              <Container>
-                <p style={totalStyle}><b>Total: $</b>{total}</p>
-              </Container>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td style={totalStyle}><b>Total: $</b>{total}</td>
+                  <td></td>
+                </tr>                
             </tbody>
           </Table>
         </Container>

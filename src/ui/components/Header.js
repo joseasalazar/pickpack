@@ -53,7 +53,7 @@ export class Header extends React.Component {
                   <NavLink to="/tours">Tours</NavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <NavLink to="/">Actividades</NavLink>
+                  <NavLink style={{ pointerEvents: 'none' }} disabled>Actividades</NavLink>
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link>
