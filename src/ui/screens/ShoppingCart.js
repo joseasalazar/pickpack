@@ -84,6 +84,19 @@ export class ShoppingCart extends React.Component {
     this.forceUpdate();
   }
 
+  checkout() {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: '¡Compra realizada exitosamente!',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    var emptyCart = [];
+    this.setState({cartItems: emptyCart});
+    this.forceUpdate();
+  }
+
   render() {
     var total = 0;
     return (
@@ -140,9 +153,10 @@ export class ShoppingCart extends React.Component {
                   <td></td>
                   <td style={totalStyle}><b>Total: $</b>{total}</td>
                   <td></td>
-                </tr>                
+                </tr>  
             </tbody>
           </Table>
+          <Button variant="primary" className="float-right" onClick={this.checkout.bind(this)}>Comprar</Button>
         </Container>
       </div>
     );
