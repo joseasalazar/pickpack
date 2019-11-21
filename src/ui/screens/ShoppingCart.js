@@ -116,19 +116,12 @@ export class ShoppingCart extends React.Component {
 
   checkout() {
     Swal.fire({
-      position: "center",
-      icon: "success",
+      type: "success",
       title: "¡Compra realizada exitosamente!",
-      showConfirmButton: false,
-      timer: 1500
+      text: "Pronto te llegará la confirmación de tu compra por correo."
+    }).then(function() {
+      window.location = "/";
     });
-    var emptyCart = [];
-    this.setState({ cartItems: emptyCart });
-    this.forceUpdate();
-  }
-
-  updateComponent() {
-    this.forceUpdate();
   }
 
   render() {
@@ -203,6 +196,7 @@ export class ShoppingCart extends React.Component {
             </tbody>
           </Table>
           <Button
+            disabled={!this.state.cartItems.length > 0}
             variant="primary"
             className="float-right"
             onClick={this.checkout.bind(this)}

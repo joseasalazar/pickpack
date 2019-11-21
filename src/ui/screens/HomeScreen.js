@@ -31,10 +31,10 @@ const subTitle = {
 const CarouselStyle = {
   margin: "0px",
   padding: "0px",
-  maxWidth:"100%",
+  maxWidth: "100%",
 };
 
-const CarouselCaption = styled(Carousel.Caption) `
+const CarouselCaption = styled(Carousel.Caption)`
   font-size: 300%;
 `;
 
@@ -43,8 +43,8 @@ const middleCard = {
 }
 
 const IconStyle = {
-  maxWidth: "70%",
-  maxHeight: "70%"
+  maxWidth: "40%",
+  maxHeight: "40%"
 }
 
 const JumbotronTitle = {
@@ -52,7 +52,7 @@ const JumbotronTitle = {
 }
 
 const homeFooter = {
-  marginBottom : "0px",
+  marginBottom: "0px",
   marginTop: "30px",
   textAlign: "center"
 }
@@ -71,7 +71,7 @@ export class HomeScreen extends React.Component {
             <CarouselCaption>
               <Title>PickPack</Title>
               <Typist style={subTitle}>¡Ve lejos, comienza aquí!</Typist>
-                <Button variant="dark" size="lg" href="/tours">Ver viajes</Button>
+              <Button variant="dark" size="lg" href="/tours">Ver viajes</Button>
             </CarouselCaption>
           </Carousel.Item>
           <Carousel.Item>
@@ -91,23 +91,23 @@ export class HomeScreen extends React.Component {
         <Jumbotron fluid style={subTitle}>
           <Container>
             <h1 style={JumbotronTitle}>#Packers</h1>
-            <hr/>
+            <hr />
             <p style={middleCard}>
-            Creemos en lugares, en personas, en experiencias. Creemos en viajes, historias, vivencias.
-            Creemos en viajeros, turistas y aventureros. Pero sobre todo, creemos en ti y en la libertad que mereces.
+              Creemos en lugares, en personas, en experiencias. Creemos en viajes, historias, vivencias.
+              Creemos en viajeros, turistas y aventureros. Pero sobre todo, creemos en ti y en la libertad que mereces.
             </p>
           </Container>
           <Container>
             <Row>
-            <Col xs={6} md={4}>
-              <Image src={Flight} style={IconStyle}  />
-            </Col>
-            <Col xs={6} md={4}>
-              <Image src={Luggage} style={IconStyle}  />
-            </Col>
-            <Col xs={6} md={4}>
-              <Image src={Passport} style={IconStyle}  />
-            </Col>
+              <Col xs={6} md={4}>
+                <Image src={Flight} style={IconStyle} />
+              </Col>
+              <Col xs={6} md={4}>
+                <Image src={Luggage} style={IconStyle} />
+              </Col>
+              <Col xs={6} md={4}>
+                <Image src={Passport} style={IconStyle} />
+              </Col>
             </Row>
           </Container>
         </Jumbotron>
@@ -163,7 +163,7 @@ export class HomeScreen extends React.Component {
           </Container>
         </div>
 
-                                       
+
       </div>
     );
   }

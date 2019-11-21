@@ -32,6 +32,7 @@ export class Routes extends React.Component {
                 <Route exact path="/como-funciona" component={ComoFunciona} />
                 <Route exact path="/compras" component={CartScreen} />
                 <Route exact path="/tours" component={TourScreen} />
+                <Route exact path="/contacto" component={Contact} />
                 <Route
                   exact
                   path="/tours/info"
