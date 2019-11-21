@@ -107,7 +107,7 @@ export function ActionButton({ tour, startDate, quantity }) {
       >
         <NavLink to="/login">
           <Button variant="outline-dark" style={{ width: "160px" }}>
-            Favor de Iniciar Sesion Primero
+            Favor de iniciar sesión
           </Button>
         </NavLink>
       </IsLoggedIn>
