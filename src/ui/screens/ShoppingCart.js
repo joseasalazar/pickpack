@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Table, Image, Container, Button } from "react-bootstrap";
 import Trash from "../assets/trash.png";
-import { GET_CART_ITEMS } from "../../api/queries";
-import { useQuery } from "@apollo/react-hooks";
+import { GET_CART_ITEMS, GET_TOUR_BY_NAME } from "../../api/queries";
+import { TOGGLE_CART } from "../../api/mutations";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import Swal from "sweetalert2";
-import Moment from 'react-moment';
+import Moment from "react-moment";
 
 const StyledContainer = styled.div`
   padding-left: 80px;
@@ -29,12 +30,12 @@ const totalStyle = {
   fontWeight: "300",
   fontSize: "20px",
   marginTop: "10px"
-}
+};
 
 const dateStyle = {
   textOverflow: "ellipsis",
   maxWidth: "100px"
-}
+};
 
 export function CartScreen() {
   const { data, loading, error } = useQuery(GET_CART_ITEMS);
@@ -63,6 +64,29 @@ export function CartScreen() {
     return <ShoppingCart cartItems={data.cartItems} />;
   }
 }
+
+export function DeleteButton({ tour, startDate, quantity }) {
+  const [removeFromCart, { loading, error }] = useMutation(TOGGLE_CART, {
+    variables: { tour, quantity, startDate },
+    refetchQueries: [
+      {
+        query: GET_TOUR_BY_NAME,
+        variables: { name: tour.name }
+      }
+    ]
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>An error occurred</p>;
+  return (
+    <div>
+      <Button variant="link" onClick={removeFromCart}>
+        <Image src={Trash} alt="Eliminar" style={IconStyle} />
+      </Button>
+    </div>
+  );
+}
+
 export class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
@@ -70,7 +94,6 @@ export class ShoppingCart extends React.Component {
     this.state = {
       cartItems: []
     };
-
   }
 
   componentDidMount() {
@@ -80,20 +103,20 @@ export class ShoppingCart extends React.Component {
   deleteTour(index) {
     var newItems = this.state.cartItems;
     newItems.splice(index, 1);
-    this.setState({cartItems: newItems});
+    this.setState({ cartItems: newItems });
     this.forceUpdate();
   }
 
   checkout() {
     Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: '¡Compra realizada exitosamente!',
+      position: "center",
+      icon: "success",
+      title: "¡Compra realizada exitosamente!",
       showConfirmButton: false,
       timer: 1500
     });
     var emptyCart = [];
-    this.setState({cartItems: emptyCart});
+    this.setState({ cartItems: emptyCart });
     this.forceUpdate();
   }
 
@@ -118,45 +141,58 @@ export class ShoppingCart extends React.Component {
             </thead>
             <tbody>
               {this.state.cartItems !== undefined &&
-                this.state.cartItems.length > 0 ? (
-                  this.state.cartItems.map((item, index) => {
-                    var price = item.tour.price * item.quantity
-                    total = total + price;
-                    return (
-                      <tr>
-                        <td>{item.tour.name}</td>
-                        <td style={dateStyle}><Moment format="DD / MM / YYYY">{item.startDate}</Moment></td>
-                        <td>${item.tour.price}</td>
-                        <td>{item.quantity}</td>
-                        <td>${price}</td>
-                        <td>
-                          <Button variant="link" onClick={this.deleteTour.bind(this, index)}>
-                            <Image src={Trash} alt="Eliminar" style={IconStyle} />
-                          </Button>
-                        </td>
-                      </tr>                    
-                    );
-                  })
-                ) 
-                
-                : (
-                  <tr>
-                    <th className="text-center" colspan="4">
-                      Por el momento no tienes tours en tu carrito
-                </th>
-                  </tr>
-                )}
+              this.state.cartItems.length > 0 ? (
+                this.state.cartItems.map((item, index) => {
+                  var price = item.tour.price * item.quantity;
+                  total = total + price;
+                  return (
+                    <tr>
+                      <td>{item.tour.name}</td>
+                      <td style={dateStyle}>
+                        <Moment format="DD / MM / YYYY">
+                          {item.startDate}
+                        </Moment>
+                      </td>
+                      <td>${item.tour.price}</td>
+                      <td>{item.quantity}</td>
+                      <td>${price}</td>
+                      <td>
+                        <DeleteButton
+                          tour={item.tour}
+                          startDate={item.startDate}
+                          quantity={item.quantity}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td style={totalStyle}><b>Total: $</b>{total}</td>
-                  <td></td>
-                </tr>  
+                  <th className="text-center" colspan="4">
+                    Por el momento no tienes tours en tu carrito
+                  </th>
+                </tr>
+              )}
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style={totalStyle}>
+                  <b>Total: $</b>
+                  {total}
+                </td>
+                <td></td>
+              </tr>
             </tbody>
           </Table>
-          <Button variant="primary" className="float-right" onClick={this.checkout.bind(this)}>Comprar</Button>
+          <Button
+            variant="primary"
+            className="float-right"
+            onClick={this.checkout.bind(this)}
+          >
+            Comprar
+          </Button>
         </Container>
       </div>
     );
