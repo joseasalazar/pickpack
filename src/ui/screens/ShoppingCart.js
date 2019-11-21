@@ -65,13 +65,17 @@ export function CartScreen() {
   }
 }
 
-export function DeleteButton({ tour, startDate, quantity }) {
+export const DeleteButton = props => {
   const [removeFromCart, { loading, error }] = useMutation(TOGGLE_CART, {
-    variables: { tour, quantity, startDate },
+    variables: {
+      tour: props.tour,
+      quantity: props.quantity,
+      startDate: props.startDate
+    },
     refetchQueries: [
       {
         query: GET_TOUR_BY_NAME,
-        variables: { name: tour.name }
+        variables: { name: props.tour.name }
       }
     ]
   });
@@ -80,12 +84,15 @@ export function DeleteButton({ tour, startDate, quantity }) {
   if (error) return <p>An error occurred</p>;
   return (
     <div>
-      <Button variant="link" onClick={removeFromCart}>
-        <Image src={Trash} alt="Eliminar" style={IconStyle} />
-      </Button>
+      <Image
+        src={Trash}
+        alt="Eliminar"
+        style={IconStyle}
+        onClick={removeFromCart}
+      />
     </div>
   );
-}
+};
 
 export class ShoppingCart extends React.Component {
   constructor(props) {
@@ -117,6 +124,10 @@ export class ShoppingCart extends React.Component {
     });
     var emptyCart = [];
     this.setState({ cartItems: emptyCart });
+    this.forceUpdate();
+  }
+
+  updateComponent() {
     this.forceUpdate();
   }
 
@@ -157,11 +168,16 @@ export class ShoppingCart extends React.Component {
                       <td>{item.quantity}</td>
                       <td>${price}</td>
                       <td>
-                        <DeleteButton
-                          tour={item.tour}
-                          startDate={item.startDate}
-                          quantity={item.quantity}
-                        />
+                        <Button
+                          variant="link"
+                          onClick={() => this.deleteTour(index)}
+                        >
+                          <DeleteButton
+                            tour={item.tour}
+                            startDate={item.startDate}
+                            quantity={item.quantity}
+                          />
+                        </Button>
                       </td>
                     </tr>
                   );
