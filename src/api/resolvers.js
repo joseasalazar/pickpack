@@ -24,7 +24,9 @@ export const resolvers = {
       const returnValue = cartItems.find(
         tours => tours.tour.tourId === tour.tourId
       );
-      return returnValue !== undefined ? true : false;
+
+      const returnVar = returnValue !== undefined ? true : false;
+      return returnVar;
     }
   },
   Mutation: {
